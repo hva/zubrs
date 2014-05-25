@@ -1,0 +1,103 @@
+/* _base.html */
+
+$bz-dark: #222;
+
+body {
+    background: url(img/bg.jpg) center 1.65rem no-repeat $primary-color;
+}
+
+.bz-very-top {
+    background: $bz-dark;
+
+    a,span {
+        color: #999;
+        line-height: 1.5rem;
+        font-size: 0.8rem;
+    }
+
+    a {
+        font-size: 0.8rem;
+    }
+
+    span {
+        font-size: 0.9rem;
+    }
+
+    .inline-list {
+        margin: 0;
+    }
+    border-bottom: 0.15rem solid scale-color($primary-color, $lightness: 5%);
+}
+
+$bz-logo-height: 120px;
+.bz-logo {
+    height: $bz-logo-height;
+    a {
+        display: block;
+        width: 300px;
+        height: $bz-logo-height;
+    }
+}
+
+.bz-content {
+    background: #fff;
+    padding-top: 15px;
+    box-shadow: 0 0 20px rgba(#fff, .5);
+}
+
+.bz-footer {
+    background-color: $bz-dark;
+    padding-top: 10px;
+    a {
+        font-size: 0.8rem;
+        color: #666;
+    }
+    li {
+        font-size: 0.8rem;
+        color: #444;
+    }
+    border-top: 4px solid $topbar-bg-color;
+    box-shadow: 0 4px 20px rgba(#000, .9);
+}
+
+.bz-footer-logo {
+    display: block;
+    background: url(img/logo.png) center 0 no-repeat;
+    width: 120px;
+    height: 180px;
+}
+
+.bz-side-nav {
+    @include side-nav();
+
+    li {
+        margin: 0;
+        a:not(.button) {
+            padding: rem-calc(5 10);
+            color: #333;
+            &:hover,
+            &:focus { background-color: #eee; color: #333; }
+        }
+
+        &.active > a:first-child:not(.button) {
+            font-weight: bold;
+            color: $primary-color;
+        }
+    }
+}
+
+.bz-panel {
+  @include panel(
+    $padding: 0 5px
+  );
+  p {
+    margin: 0;
+  }
+  &, p {
+    font-size: 0.8rem;
+  }
+  span {
+    color: #999;
+    font-size: 0.7rem;
+  }
+}
