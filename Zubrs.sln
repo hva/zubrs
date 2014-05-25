@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zubrs.Mvc", "Zubrs.Mvc\Zubrs.Mvc.csproj", "{A3B405B0-DE16-45E9-B928-BB38B4A1DBE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zubrs.Mvc", "Zubrs.Mvc\Zubrs.Mvc.csproj", "{D0823530-32FB-4E46-B97C-F932FD73C856}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A3B405B0-DE16-45E9-B928-BB38B4A1DBE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3B405B0-DE16-45E9-B928-BB38B4A1DBE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3B405B0-DE16-45E9-B928-BB38B4A1DBE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3B405B0-DE16-45E9-B928-BB38B4A1DBE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0823530-32FB-4E46-B97C-F932FD73C856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0823530-32FB-4E46-B97C-F932FD73C856}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0823530-32FB-4E46-B97C-F932FD73C856}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0823530-32FB-4E46-B97C-F932FD73C856}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
