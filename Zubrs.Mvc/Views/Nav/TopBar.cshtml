@@ -1,0 +1,32 @@
+﻿<nav class="top-bar" data-topbar>
+    <section class="top-bar-section">
+        <ul class="left">
+            {% for x in load('menu') %}
+            <li{% if x.sub %} class="has-dropdown" {% endif %}>
+                <a href="{{ x.url }}" {% if script= =x.url %} class="active" {% endif %}>{{ x.title|upper }}</a>
+                {% if x.sub %}
+                <ul class="dropdown">
+                    {% for zid, z in load(x.sub) if not z.hidden %}
+                    <li><a href="{{ x.url }}?id={{ zid }}">{{ z.title|upper }}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                </li>
+                {% endfor %}
+        </ul>
+    </section>
+    <section class="top-bar-section">
+        <ul class="right">
+            <li class="has-form">
+                <div class="row collapse">
+                    <div class="small-8 columns">
+                        <input type="text">
+                    </div>
+                    <div class="small-4 columns">
+                        <input type="button" class="button expand" value="Найти" />
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </section>
+</nav>

@@ -17,6 +17,8 @@ namespace Zubrs.Mvc
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new SassBundle("~/bundles/css").Include("~/sass/site.scss"));
+
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

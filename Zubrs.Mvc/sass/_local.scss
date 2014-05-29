@@ -1,9 +1,10 @@
 /* _base.html */
 
+$bz-img-path: "/Content/img";
 $bz-dark: #222;
 
 body {
-    background: url(img/bg.jpg) center 1.65rem no-repeat $primary-color;
+    background: url(#{$bz-img-path}/bg.jpg) center 1.65rem no-repeat $primary-color;
 }
 
 .bz-very-top {
@@ -62,7 +63,7 @@ $bz-logo-height: 120px;
 
 .bz-footer-logo {
     display: block;
-    background: url(img/logo.png) center 0 no-repeat;
+    background: url(#{$bz-img-path}/logo.png) center 0 no-repeat;
     width: 120px;
     height: 180px;
 }
