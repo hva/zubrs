@@ -138,9 +138,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="sass\foundation\test.html" />
-    <Content Include="sass\site.css">
-      <DependentUpon>site.scss</DependentUpon>
-    </Content>
     <Content Include="Scripts\foundation\fastclick.js" />
     <Content Include="Scripts\foundation\foundation.abide.js" />
     <Content Include="Scripts\foundation\foundation.accordion.js" />
@@ -200,12 +197,13 @@
     <Content Include="sass\foundation\_functions.scss" />
     <Content Include="sass\foundation\_settings.scss" />
     <Content Include="sass\normalize.scss" />
-    <Content Include="sass\site.scss" />
     <Content Include="sass\_local-fix.scss" />
     <Content Include="sass\_local-orbit.scss" />
     <Content Include="sass\_local-table.scss" />
     <Content Include="sass\_local-topbar.scss" />
     <Content Include="sass\_local.scss" />
+    <Content Include="sass\site.scss" />
+    <None Include="Properties\PublishProfiles\zubrs.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
