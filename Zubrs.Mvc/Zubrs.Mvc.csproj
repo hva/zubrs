@@ -123,6 +123,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -198,7 +199,7 @@
     <Content Include="sass\foundation\components\_visibility.scss" />
     <Content Include="sass\foundation\_functions.scss" />
     <Content Include="sass\foundation\_settings.scss" />
-    <Content Include="sass\_normalize.scss" />
+    <Content Include="sass\normalize.scss" />
     <Content Include="sass\site.scss" />
     <Content Include="sass\_local-fix.scss" />
     <Content Include="sass\_local-orbit.scss" />
@@ -225,12 +226,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
-    <Content Include="Views\Shared\_Layout.old.cshtml" />
     <Content Include="Views\Nav\TopBar.cshtml" />
+    <Content Include="Views\Nav\BottomBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
