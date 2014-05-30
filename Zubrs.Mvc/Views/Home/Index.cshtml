@@ -1,1 +1,140 @@
-﻿Hello world!
+﻿{% set competitions = load('competitions') %}
+{% set teams = load('teams') %}
+
+<div class="small-12 columns">
+
+    <div class="row">
+        <div class="small-12 columns">
+            {# <h5><a href="competitions.php">Результаты</a></h5> #}
+            <ul data-orbit data-options="bullets:false;timer:false;circular:false">
+                {% for row in games|batch(4) %}
+                <li>
+                    <div class="row" style="margin: 0 15px;">
+                        {% for x in row %}
+                        <div class="small-3 columns{% if loop.last %} end{% endif %}">
+                            {% include 'inc/_game3.html' with {'x': x, 'competitions': competitions, 'teams': teams} %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="small-4 columns">
+            <ul data-orbit>
+                {% for id, x in news_main %}
+                <li data-bz-orbit-source="news-{{ id }}">
+                    <img src="{{ x.img }}" />
+                    <a href="news.php?id={{ id }}"><div class="orbit-caption">{{ x.title }}</div></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="small-4 columns">
+            <h5><a href="news.php">Новости</a></h5>
+            <ul class="side-nav">
+                {% for id, x in news_main %}
+                <li data-bz-orbit-target="news-{{ id }}">
+                    <a href="news.php?id={{ id }}">{{ x.title }}</a>
+                </li>
+                {% if not loop.last %}
+                <li class="divider"></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="small-4 columns">
+            <h5><a href="video.php">Видео</a></h5>
+            <div class="flex-video">
+                <iframe width="640" height="360" src="{{ load('video')|first.src }}" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-4 columns">
+            <ul data-orbit data-options="timer_speed:6000">
+                {% for id, x in news_child %}
+                <li data-bz-orbit-source="news-{{ id }}">
+                    <img src="{{ x.img }}" />
+                    <a href="news.php?id={{ id }}"><div class="orbit-caption">{{ x.title }}</div></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="small-4 columns">
+            <h5><a href="news.php">Детский спорт</a></h5>
+            <ul class="side-nav">
+                {% for id, x in news_child %}
+                <li data-bz-orbit-target="news-{{ id }}">
+                    <a href="news.php?id={{ id }}">{{ x.title }}</a>
+                </li>
+                {% if not loop.last %}
+                <li class="divider"></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="small-4 columns">
+            <h5><a href="competitions.php">Таблицы турниров 2014</a></h5>
+            <dl class="tabs" data-tab>
+                {% for id, c in competitions %}
+                <dd{% if loop.first %} class="active" {% endif %}>
+                    <a href="#tab-{{ id }}" title="{{ c.title }}">{{ c.title_short }}</a></dd>
+                    {% endfor %}
+            </dl>
+            <div class="tabs-content">
+                {% for id, c in competitions %}
+                <div class="content{% if loop.first %} active{% endif %}" id="tab-{{ id }}">
+                    {% include 'inc/_competition_table.html' with {'competition': c, 'class': 'bz-table'} %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="js/foundation/foundation.tab.js"></script>
+<script>
+    $(document).foundation({
+        orbit: {
+            timer_speed: 5000,
+            resume_on_mouseout: true,
+            slide_number: false,
+            prev_class: 'bz-orbit-prev',
+            next_class: 'bz-orbit-next'
+        }
+    });
+
+    var delay = 400,
+        setTimeoutConst,
+        gotoLink = function(link) {
+            if ((typeof link === 'string') && (link = $.trim(link)) != "") {
+                var slide = $(document).find('[data-bz-orbit-source=' + link + ']');
+                if (slide.index() != -1) {
+                    var orbit = slide.closest('[data-orbit]').data('Instance');
+                    orbit._goto(slide.index());
+                }
+            }
+        };
+    $('[data-bz-orbit-target]').hover(
+        function() {
+            var link = $(this).attr('data-bz-orbit-target');
+            setTimeoutConst = setTimeout(gotoLink, delay, link);
+        },
+        function() {
+            clearTimeout(setTimeoutConst);
+        }
+    );
+</script>
+{% endblock %}
