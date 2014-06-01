@@ -1,4 +1,4 @@
-﻿namespace Zubrs.Mvc.Infrastrucrure
+﻿namespace Zubrs.Mvc.Infrastructure
 {
     public static class RouteName
     {

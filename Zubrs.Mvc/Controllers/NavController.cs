@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Zubrs.Mvc.Data;
-using Zubrs.Mvc.Infrastrucrure;
+using Zubrs.Mvc.Infrastructure;
 using Zubrs.Mvc.Models;
 
 namespace Zubrs.Mvc.Controllers
