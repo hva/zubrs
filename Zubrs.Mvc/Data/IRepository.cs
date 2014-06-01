@@ -8,5 +8,6 @@ namespace Zubrs.Mvc.Data
     {
         Task<IEnumerable<Competition>> GetCompetitionsAsync();
         Task<IEnumerable<Team>> GetTeamsAsync();
+        Task<IEnumerable<Game>> GetGamesAsync();
     }
 }

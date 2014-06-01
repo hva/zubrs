@@ -127,6 +127,7 @@
     </Compile>
     <Compile Include="Infrastructure\RouteName.cs" />
     <Compile Include="Models\Competition.cs" />
+    <Compile Include="Models\Game.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

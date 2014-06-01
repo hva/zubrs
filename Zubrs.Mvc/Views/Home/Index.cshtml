@@ -1,11 +1,7 @@
-﻿{% set competitions = load('competitions') %}
-{% set teams = load('teams') %}
-
-<div class="small-12 columns">
+﻿<div class="small-12 columns">
 
     <div class="row">
         <div class="small-12 columns">
-            {# <h5><a href="competitions.php">Результаты</a></h5> #}
             <ul data-orbit data-options="bullets:false;timer:false;circular:false">
                 {% for row in games|batch(4) %}
                 <li>
