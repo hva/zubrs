@@ -4,6 +4,7 @@
     {
         public static string News = "News";
         public static string Teams = "Teams";
+        public static string Team = "Team";
         public static string Competitions = "Competitions";
         public static string Competition = "Competition";
         public static string Management = "Management";

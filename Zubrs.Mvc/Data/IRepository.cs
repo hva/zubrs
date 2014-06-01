@@ -7,5 +7,6 @@ namespace Zubrs.Mvc.Data
     public interface IRepository
     {
         Task<IEnumerable<Competition>> GetCompetitionsAsync();
+        Task<IEnumerable<Team>> GetTeamsAsync();
     }
 }

@@ -1,6 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using Zubrs.Mvc.Data;
 using Zubrs.Mvc.Infrastrucrure;
 using Zubrs.Mvc.Models;
 
@@ -8,33 +10,73 @@ namespace Zubrs.Mvc.Controllers
 {
     public class NavController : Controller
     {
-        private readonly Lazy<IEnumerable<MenuItem>> menuLazy = new Lazy<IEnumerable<MenuItem>>(CreateMenu);
-
-        public PartialViewResult TopBar()
+        public async Task<PartialViewResult> TopBar()
         {
-            return PartialView(menuLazy.Value);
+            var menu = await CreateMenu(true);
+            return PartialView(menu);
         }
 
-        public PartialViewResult BottomBar()
+        public async Task<PartialViewResult> BottomBar()
         {
-            return PartialView(menuLazy.Value);
+            var menu = await CreateMenu(false);
+            return PartialView(menu);
         }
 
-        private static IEnumerable<MenuItem> CreateMenu()
+        private async static Task<IEnumerable<MenuItem>> CreateMenu(bool loadSubItems)
         {
-            yield return new MenuItem { Title = "Новости", RouteName = RouteName.News };
-            yield return new MenuItem { Title = "Команды", RouteName = RouteName.Teams };
-            yield return new MenuItem { Title = "Соревнования", RouteName = RouteName.Competitions, SubItems = CreateCompetitionsMenu() };
-            yield return new MenuItem { Title = "Руководство", RouteName = RouteName.Management };
-            yield return new MenuItem { Title = "История", RouteName = RouteName.History };
-            yield return new MenuItem { Title = "Фото", RouteName = RouteName.Photo };
-            yield return new MenuItem { Title = "Видео", RouteName = RouteName.Video };
+            List<MenuItem> menu = new List<MenuItem>(7)
+            {
+                new MenuItem {Title = "Новости", RouteName = RouteName.News},
+            };
+
+            var teams = new MenuItem { Title = "Команды", RouteName = RouteName.Teams };
+            if (loadSubItems)
+            {
+                teams.SubItems = await CreateTeamsMenu();
+            }
+            menu.Add(teams);
+
+            var competitions = new MenuItem { Title = "Соревнования", RouteName = RouteName.Competitions };
+            if (loadSubItems)
+            {
+                competitions.SubItems = await CreateCompetitionsMenu();
+            }
+            menu.Add(competitions);
+
+            menu.Add( new MenuItem { Title = "Руководство", RouteName = RouteName.Management });
+            menu.Add( new MenuItem { Title = "История", RouteName = RouteName.History });
+            menu.Add( new MenuItem { Title = "Фото", RouteName = RouteName.Photo });
+            menu.Add( new MenuItem { Title = "Видео", RouteName = RouteName.Video });
+
+            return menu;
         }
 
-        private static IEnumerable<MenuItem> CreateCompetitionsMenu()
+        private async static Task<IEnumerable<MenuItem>> CreateTeamsMenu()
         {
-            yield return new MenuItem { Title = "Чемпионат РБ", RouteName = RouteName.Competition, RouteParams = new { id = 1 } };
-            yield return new MenuItem { Title = "Кубок РБ", RouteName = RouteName.Competition, RouteParams = new { id = 2 } };
+            IRepository repository = new StaticRepository();
+            var competitions = await repository.GetTeamsAsync();
+            return competitions.Where(x => x.ShowInMenu).Select(x =>
+                new MenuItem
+                {
+                    Title = x.Title,
+                    RouteName = RouteName.Team,
+                    RouteParams = new { id = x.Id }
+                }
+            );
+        }
+
+        private async static Task<IEnumerable<MenuItem>> CreateCompetitionsMenu()
+        {
+            IRepository repository = new StaticRepository();
+            var competitions = await repository.GetCompetitionsAsync();
+            return competitions.Select(x =>
+                new MenuItem
+                {
+                    Title = x.Title,
+                    RouteName = RouteName.Competition,
+                    RouteParams = new { id = x.Id }
+                }
+            );
         }
     }
 }

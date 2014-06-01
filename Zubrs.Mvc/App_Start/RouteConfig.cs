@@ -21,6 +21,11 @@ namespace Zubrs.Mvc
             );
 
             routes.MapRoute(
+                RouteName.Team,
+                "teams/{id}"
+            );
+
+            routes.MapRoute(
                 RouteName.Competitions,
                 "competitions"
             );
