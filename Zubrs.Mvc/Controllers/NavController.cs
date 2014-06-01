@@ -25,6 +25,10 @@ namespace Zubrs.Mvc.Controllers
             yield return new MenuItem { Title = "Новости", RouteName = RouteName.News };
             yield return new MenuItem { Title = "Команды", RouteName = RouteName.Teams };
             yield return new MenuItem { Title = "Соревнования", RouteName = RouteName.Competitions, SubItems = CreateCompetitionsMenu() };
+            yield return new MenuItem { Title = "Руководство", RouteName = RouteName.Management };
+            yield return new MenuItem { Title = "История", RouteName = RouteName.History };
+            yield return new MenuItem { Title = "Фото", RouteName = RouteName.Photo };
+            yield return new MenuItem { Title = "Видео", RouteName = RouteName.Video };
         }
 
         private static IEnumerable<MenuItem> CreateCompetitionsMenu()

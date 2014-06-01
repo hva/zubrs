@@ -31,6 +31,26 @@ namespace Zubrs.Mvc
             );
 
             routes.MapRoute(
+                RouteName.Management,
+                "management"
+            );
+
+            routes.MapRoute(
+                RouteName.History,
+                "history"
+            );
+
+            routes.MapRoute(
+                RouteName.Photo,
+                "photo"
+            );
+
+            routes.MapRoute(
+                RouteName.Video,
+                "video"
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
