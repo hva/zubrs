@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Zubrs.Mvc.Infrastrucrure;
 using Zubrs.Mvc.Models;
 
 namespace Zubrs.Mvc.Controllers
@@ -21,9 +22,15 @@ namespace Zubrs.Mvc.Controllers
 
         private static IEnumerable<MenuItem> CreateMenu()
         {
-            yield return new MenuItem { Title = "Новости", Controller = "news" };
-            yield return new MenuItem { Title = "Команды", Controller = "teams" };
-            yield return new MenuItem { Title = "Соревнования", Controller = "competitions" };
+            yield return new MenuItem { Title = "Новости", RouteName = RouteName.News };
+            yield return new MenuItem { Title = "Команды", RouteName = RouteName.Teams };
+            yield return new MenuItem { Title = "Соревнования", RouteName = RouteName.Competitions, SubItems = CreateCompetitionsMenu() };
+        }
+
+        private static IEnumerable<MenuItem> CreateCompetitionsMenu()
+        {
+            yield return new MenuItem { Title = "Чемпионат РБ", RouteName = RouteName.Competition, RouteParams = new { id = 1 } };
+            yield return new MenuItem { Title = "Кубок РБ", RouteName = RouteName.Competition, RouteParams = new { id = 2 } };
         }
     }
 }

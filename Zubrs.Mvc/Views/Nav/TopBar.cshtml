@@ -4,23 +4,22 @@
         <ul class="left">
             @foreach (var x in Model)
             {
-                <li>@Html.RouteLink(@x.Title.ToUpper(), new { @x.Controller }, new { @class = @x.IsActive ? "active" : null })</li>
-            }
-            @*{% for x in load('menu') %}
-            <li{% if x.sub %} class="has-dropdown" {% endif %}>
-                <a href="{{ x.url }}" {% if script==x.url %} class="active" {% endif %}>{{ x.title|upper }}</a>
-                {% if x.sub %}
-                <ul class="dropdown">
-                    {% for zid, z in load(x.sub) if not z.hidden %}
-                    <li><a href="{{ x.url }}?id={{ zid }}">{{ z.title|upper }}</a></li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
+                <li class="@(x.HasSubItems ? "has-dropdown" : null)">
+                    @Html.RouteLink(x.Title.ToUpper(), x.RouteName, x.RouteParams, new { @class = x.IsActive ? "active" : null })
+                    @if (x.HasSubItems)
+                    {
+                        <ul class="dropdown">
+                            @foreach (var z in x.SubItems)
+                            {
+                                <li>@Html.RouteLink(z.Title.ToUpper(), z.RouteName, z.RouteParams)</li>
+                            }
+                        </ul>
+                    }
                 </li>
-                {% endfor %}*@
+            }
         </ul>
     </section>
-    <section class="top-bar-section">
+    @*<section class="top-bar-section">
         <ul class="right">
             <li class="has-form">
                 <div class="row collapse">
@@ -33,5 +32,5 @@
                 </div>
             </li>
         </ul>
-    </section>
+    </section>*@
 </nav>

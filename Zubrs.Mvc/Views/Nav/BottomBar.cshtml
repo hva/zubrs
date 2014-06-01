@@ -3,6 +3,6 @@
 <ul class="inline-list">
     @foreach (var x in Model)
     {
-        <li>@Html.RouteLink(@x.Title, new { @x.Controller })</li>
+        <li>@Html.RouteLink(x.Title, x.RouteName, x.RouteParams)</li>
     }
 </ul>
