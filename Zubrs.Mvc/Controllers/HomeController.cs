@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Zubrs.Mvc.ViewModels;
 
 namespace Zubrs.Mvc.Controllers
 {
@@ -6,7 +7,8 @@ namespace Zubrs.Mvc.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var model = new HomeViewModel();
+            return View(model);
         }
     }
 }
