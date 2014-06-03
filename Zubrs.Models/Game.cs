@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Zubrs.Mvc.Models
+namespace Zubrs.Models
 {
     public class Game
     {

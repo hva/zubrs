@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Zubrs.Mvc.Models;
+using Zubrs.Models;
 
-namespace Zubrs.Mvc.Data
+namespace Zubrs.Data
 {
     public interface IRepository
     {

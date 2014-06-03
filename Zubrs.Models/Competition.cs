@@ -1,4 +1,4 @@
-﻿namespace Zubrs.Mvc.Models
+﻿namespace Zubrs.Models
 {
     public class Competition
     {
