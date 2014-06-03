@@ -1,20 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Threading.Tasks;
 using Zubrs.Models;
 
 namespace Zubrs.Data
 {
-    public class StaticRepository : IRepository
+    public class DataRepository : IDataRepository
     {
         public Task<IEnumerable<Competition>> GetCompetitionsAsync()
         {
             return Task.FromResult(LoadCompetitions());
         }
 
-        public Task<IEnumerable<Team>> GetTeamsAsync()
+        public async Task<IEnumerable<Team>> GetTeamsAsync()
         {
-            return Task.FromResult(LoadTeams());
+            using (var context = new ZubrsContext())
+            {
+                return await context.Teams.ToArrayAsync();
+            }
         }
 
         public Task<IEnumerable<Game>> GetGamesAsync()
@@ -28,14 +32,14 @@ namespace Zubrs.Data
             yield return new Competition { Id = 2, Title = "Кубок РБ", TitleShort = "КРБ" };
         }
 
-        private IEnumerable<Team> LoadTeams()
-        {
-            yield return new Team { Id = 1, Title = "Брестские Зубры", TitleShort = "зубры", ShowInMenu = true };
-            yield return new Team { Id = 2, Title = "Брестские Зубры-2", TitleShort = "зубры 2", ShowInMenu = true };
-            yield return new Team { Id = 2, Title = "Минск" };
-            yield return new Team { Id = 2, Title = "Сахарный Шторм" };
-            yield return new Team { Id = 2, Title = "Логишинские Волки" };
-        }
+        //private IEnumerable<Team> LoadTeams()
+        //{
+        //    yield return new Team { Id = 1, Title = "Брестские Зубры", TitleShort = "зубры", ShowInMenu = true };
+        //    yield return new Team { Id = 2, Title = "Брестские Зубры-2", TitleShort = "зубры 2", ShowInMenu = true };
+        //    yield return new Team { Id = 2, Title = "Минск" };
+        //    yield return new Team { Id = 2, Title = "Сахарный Шторм" };
+        //    yield return new Team { Id = 2, Title = "Логишинские Волки" };
+        //}
 
         private IEnumerable<Game> LoadGames()
         {

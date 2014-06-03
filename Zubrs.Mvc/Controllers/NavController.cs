@@ -8,7 +8,7 @@ using Zubrs.Mvc.Infrastructure;
 
 namespace Zubrs.Mvc.Controllers
 {
-    public class NavController : Controller
+    public class NavController : AsyncController
     {
         public async Task<PartialViewResult> TopBar()
         {
@@ -53,7 +53,7 @@ namespace Zubrs.Mvc.Controllers
 
         private async static Task<IEnumerable<MenuItem>> CreateTeamsMenu()
         {
-            IRepository repository = new StaticRepository();
+            IDataRepository repository = new DataRepository();
             var competitions = await repository.GetTeamsAsync();
             return competitions.Where(x => x.ShowInMenu).Select(x =>
                 new MenuItem
@@ -67,7 +67,7 @@ namespace Zubrs.Mvc.Controllers
 
         private async static Task<IEnumerable<MenuItem>> CreateCompetitionsMenu()
         {
-            IRepository repository = new StaticRepository();
+            IDataRepository repository = new DataRepository();
             var competitions = await repository.GetCompetitionsAsync();
             return competitions.Select(x =>
                 new MenuItem
