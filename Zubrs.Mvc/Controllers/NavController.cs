@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using Zubrs.Data;
 using Zubrs.Models;
@@ -8,21 +7,21 @@ using Zubrs.Mvc.Infrastructure;
 
 namespace Zubrs.Mvc.Controllers
 {
-    public class NavController : AsyncController
+    public class NavController : Controller
     {
-        public async Task<PartialViewResult> TopBar()
+        public PartialViewResult TopBar()
         {
-            var menu = await CreateMenu(true);
+            var menu = CreateMenu(true);
             return PartialView(menu);
         }
 
-        public async Task<PartialViewResult> BottomBar()
+        public PartialViewResult BottomBar()
         {
-            var menu = await CreateMenu(false);
+            var menu = CreateMenu(false);
             return PartialView(menu);
         }
 
-        private async static Task<IEnumerable<MenuItem>> CreateMenu(bool loadSubItems)
+        private static IEnumerable<MenuItem> CreateMenu(bool loadSubItems)
         {
             List<MenuItem> menu = new List<MenuItem>(7)
             {
@@ -32,14 +31,14 @@ namespace Zubrs.Mvc.Controllers
             var teams = new MenuItem { Title = "Команды", RouteName = RouteName.Teams };
             if (loadSubItems)
             {
-                teams.SubItems = await CreateTeamsMenu();
+                teams.SubItems = CreateTeamsMenu();
             }
             menu.Add(teams);
 
             var competitions = new MenuItem { Title = "Соревнования", RouteName = RouteName.Competitions };
             if (loadSubItems)
             {
-                competitions.SubItems = await CreateCompetitionsMenu();
+                competitions.SubItems = CreateCompetitionsMenu();
             }
             menu.Add(competitions);
 
@@ -51,10 +50,10 @@ namespace Zubrs.Mvc.Controllers
             return menu;
         }
 
-        private async static Task<IEnumerable<MenuItem>> CreateTeamsMenu()
+        private static IEnumerable<MenuItem> CreateTeamsMenu()
         {
             IDataRepository repository = new DataRepository();
-            var competitions = await repository.GetTeamsAsync();
+            var competitions = repository.GetTeams();
             return competitions.Where(x => x.ShowInMenu).Select(x =>
                 new MenuItem
                 {
@@ -65,10 +64,10 @@ namespace Zubrs.Mvc.Controllers
             );
         }
 
-        private async static Task<IEnumerable<MenuItem>> CreateCompetitionsMenu()
+        private static IEnumerable<MenuItem> CreateCompetitionsMenu()
         {
             IDataRepository repository = new DataRepository();
-            var competitions = await repository.GetCompetitionsAsync();
+            var competitions = repository.GetCompetitions();
             return competitions.Select(x =>
                 new MenuItem
                 {

@@ -7,7 +7,11 @@ namespace Zubrs.Data
     public interface IDataRepository
     {
         Task<IEnumerable<Competition>> GetCompetitionsAsync();
+        IEnumerable<Competition> GetCompetitions();
+
         Task<IEnumerable<Team>> GetTeamsAsync();
+        IEnumerable<Team> GetTeams();
+
         Task<IEnumerable<Game>> GetGamesAsync();
     }
 }

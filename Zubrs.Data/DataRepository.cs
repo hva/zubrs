@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using Zubrs.Models;
 
@@ -8,9 +9,20 @@ namespace Zubrs.Data
 {
     public class DataRepository : IDataRepository
     {
-        public Task<IEnumerable<Competition>> GetCompetitionsAsync()
+        public async Task<IEnumerable<Competition>> GetCompetitionsAsync()
         {
-            return Task.FromResult(LoadCompetitions());
+            using (var context = new ZubrsContext())
+            {
+                return await context.Competitions.ToArrayAsync();
+            }
+        }
+
+        public IEnumerable<Competition> GetCompetitions()
+        {
+            using (var context = new ZubrsContext())
+            {
+                return context.Competitions.ToArray();
+            }
         }
 
         public async Task<IEnumerable<Team>> GetTeamsAsync()
@@ -21,25 +33,18 @@ namespace Zubrs.Data
             }
         }
 
+        public IEnumerable<Team> GetTeams()
+        {
+            using (var context = new ZubrsContext())
+            {
+                return context.Teams.ToArray();
+            }
+        }
+
         public Task<IEnumerable<Game>> GetGamesAsync()
         {
             return Task.FromResult(LoadGames());
         }
-
-        private static IEnumerable<Competition> LoadCompetitions()
-        {
-            yield return new Competition { Id = 1, Title = "Чемпионат РБ", TitleShort = "ЧРБ" };
-            yield return new Competition { Id = 2, Title = "Кубок РБ", TitleShort = "КРБ" };
-        }
-
-        //private IEnumerable<Team> LoadTeams()
-        //{
-        //    yield return new Team { Id = 1, Title = "Брестские Зубры", TitleShort = "зубры", ShowInMenu = true };
-        //    yield return new Team { Id = 2, Title = "Брестские Зубры-2", TitleShort = "зубры 2", ShowInMenu = true };
-        //    yield return new Team { Id = 2, Title = "Минск" };
-        //    yield return new Team { Id = 2, Title = "Сахарный Шторм" };
-        //    yield return new Team { Id = 2, Title = "Логишинские Волки" };
-        //}
 
         private IEnumerable<Game> LoadGames()
         {
