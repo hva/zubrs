@@ -4,7 +4,7 @@ using Zubrs.Models;
 
 namespace Zubrs.Data
 {
-    public class DataInitializer : CreateDatabaseIfNotExists<ZubrsContext>
+    public class DataInitializer : DropCreateDatabaseIfModelChanges<ZubrsContext>
     {
         protected override void Seed(ZubrsContext db)
         {

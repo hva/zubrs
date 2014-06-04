@@ -11,7 +11,17 @@ namespace Zubrs.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<Game>()
+                .HasRequired(g => g.Home)
+                .WithMany()
+                .HasForeignKey(g => g.HomeId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Game>()
+                .HasRequired(g => g.Away)
+                .WithMany()
+                .HasForeignKey(g => g.AwayId)
+                .WillCascadeOnDelete(false);
         }
     }
 }
