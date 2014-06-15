@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Threading.Tasks;
 using Ninject;
 using Zubrs.Data;
@@ -15,7 +16,7 @@ namespace Zubrs.Mvc.ViewModels
 
         public async Task LoadAsync()
         {
-            Games = await Repository.GetVisibleGamesAsync();
+            Games = await Repository.Games.ToArrayAsync();
         }
     }
 }

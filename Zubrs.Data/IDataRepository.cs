@@ -1,17 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
 using Zubrs.Models;
 
 namespace Zubrs.Data
 {
     public interface IDataRepository
     {
-        Task<IEnumerable<Competition>> GetCompetitionsAsync();
-        IEnumerable<Competition> GetCompetitions();
+        void SetLog(Action<string> log);
 
-        Task<IEnumerable<Team>> GetTeamsAsync();
-        IEnumerable<Team> GetTeams();
-
-        Task<IEnumerable<Game>> GetVisibleGamesAsync();
+        IQueryable<Competition> Competitions { get; }
+        IQueryable<Team> Teams { get; }
+        IQueryable<Game> Games { get; }
     }
 }

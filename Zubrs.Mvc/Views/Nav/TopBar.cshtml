@@ -1,8 +1,8 @@
-﻿@model Zubrs.Mvc.ViewModels.NavViewModel
+﻿@model Zubrs.Models.MenuItem[]
 <nav class="top-bar" data-topbar>
     <section class="top-bar-section">
         <ul class="left">
-            @foreach (var x in Model.Menu)
+            @foreach (var x in Model)
             {
                 <li class="@(x.HasSubItems ? "has-dropdown" : null)">
                     @Html.RouteLink(x.Title.ToUpper(), x.RouteName, x.RouteParams, new { @class = x.IsActive ? "active" : null })

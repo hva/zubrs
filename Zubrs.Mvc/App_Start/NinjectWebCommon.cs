@@ -5,7 +5,6 @@ using Ninject;
 using Ninject.Web.Common;
 using Zubrs.Data;
 using Zubrs.Mvc;
-using Zubrs.Mvc.ViewModels;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
@@ -63,7 +62,6 @@ namespace Zubrs.Mvc
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<ZubrsContext>().ToSelf().InRequestScope();
-            kernel.Bind<NavViewModel>().ToSelf().InRequestScope();
             kernel.Bind<IDataRepository>().To<DataRepository>();
         }
     }

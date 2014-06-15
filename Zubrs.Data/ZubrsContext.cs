@@ -5,6 +5,11 @@ namespace Zubrs.Data
 {
     public class ZubrsContext : DbContext
     {
+        public ZubrsContext()
+        {
+            Database.SetInitializer(new DataInitializer());
+        }
+
         public DbSet<Team> Teams { get; set; }
         public DbSet<Competition> Competitions { get; set; }
         public DbSet<Game> Games { get; set; }

@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace Zubrs.Models
+﻿namespace Zubrs.Models
 {
     public class MenuItem
     {
@@ -9,11 +6,11 @@ namespace Zubrs.Models
         public string RouteName { get; set; }
         public object RouteParams { get; set; }
         public bool IsActive { get; set; }
-        public IEnumerable<MenuItem> SubItems { get; set; }
+        public MenuItem[] SubItems { get; set; }
 
         public bool HasSubItems
         {
-            get { return SubItems != null && SubItems.Any(); }
+            get { return SubItems != null && SubItems.Length > 0; }
         }
     }
 }

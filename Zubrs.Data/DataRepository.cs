@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Ninject;
 using Zubrs.Models;
 
@@ -12,29 +10,13 @@ namespace Zubrs.Data
         [Inject]
         public ZubrsContext Context { get; set; }
 
-        public async Task<IEnumerable<Competition>> GetCompetitionsAsync()
+        public void SetLog(Action<string> log)
         {
-            return await Context.Competitions.ToArrayAsync();
+            Context.Database.Log = log;
         }
 
-        public IEnumerable<Competition> GetCompetitions()
-        {
-            return Context.Competitions.ToArray();
-        }
-
-        public async Task<IEnumerable<Team>> GetTeamsAsync()
-        {
-            return await Context.Teams.ToArrayAsync();
-        }
-
-        public IEnumerable<Team> GetTeams()
-        {
-            return Context.Teams.ToArray();
-        }
-
-        public async Task<IEnumerable<Game>> GetVisibleGamesAsync()
-        {
-            return await Context.Games.ToArrayAsync();
-        }
+        public IQueryable<Competition> Competitions { get { return Context.Competitions; } }
+        public IQueryable<Team> Teams { get { return Context.Teams; } }
+        public IQueryable<Game> Games { get { return Context.Games; } }
     }
 }
