@@ -1,6 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Threading.Tasks;
+using System.Web.Mvc;
 using Ninject;
-using Zubrs.Data;
 using Zubrs.Mvc.ViewModels;
 
 namespace Zubrs.Mvc.Controllers
@@ -8,12 +8,12 @@ namespace Zubrs.Mvc.Controllers
     public class HomeController : Controller
     {
         [Inject]
-        public IDataRepository Repository { get; set; }
+        public HomeViewModel ViewModel { get; set; }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var model = new HomeViewModel();
-            return View(model);
+            await ViewModel.LoadAsync();
+            return View(ViewModel);
         }
     }
 }

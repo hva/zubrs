@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Zubrs.Models.MenuItem>
+﻿@model Zubrs.Mvc.ViewModels.NavViewModel
 
 <ul class="inline-list">
-    @foreach (var x in Model)
+    @foreach (var x in Model.Menu)
     {
         <li>@Html.RouteLink(x.Title, x.RouteName, x.RouteParams)</li>
     }
