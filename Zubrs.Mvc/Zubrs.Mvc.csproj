@@ -224,7 +224,6 @@
     <Content Include="sass\_local-topbar.scss" />
     <Content Include="sass\_local.scss" />
     <Content Include="sass\site.scss" />
-    <None Include="Properties\PublishProfiles\zubrs.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
