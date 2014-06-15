@@ -41,7 +41,7 @@ namespace Zubrs.Data
             }
         }
 
-        public Task<IEnumerable<Game>> GetGamesAsync()
+        public Task<IEnumerable<Game>> GetVisibleGamesAsync()
         {
             return Task.FromResult(LoadGames());
         }

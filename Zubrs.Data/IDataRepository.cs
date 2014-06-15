@@ -12,6 +12,6 @@ namespace Zubrs.Data
         Task<IEnumerable<Team>> GetTeamsAsync();
         IEnumerable<Team> GetTeams();
 
-        Task<IEnumerable<Game>> GetGamesAsync();
+        Task<IEnumerable<Game>> GetVisibleGamesAsync();
     }
 }
