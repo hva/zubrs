@@ -6,3 +6,4 @@
 */obj
 packages
 Zubrs.Mvc/sass/*.css
+*.pubxml
