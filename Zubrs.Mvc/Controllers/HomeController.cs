@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Ninject;
@@ -25,13 +22,14 @@ namespace Zubrs.Mvc.Controllers
             });
         }
 
-        private async Task<Game[]> LoadGamesAsync()
+        private async Task<Game[][]> LoadGamesAsync()
         {
-            var res = await Repository.Games.ToArrayAsync();
-
-            var asd = res.Chunk(2).ToArray();
-
-            return res;
+            var res = await Repository.Games
+                .Include(x => x.Competition)
+                .Include(x => x.Home)
+                .Include(x => x.Away)
+                .ToArrayAsync();
+            return res.Chunk(4);
         }
     }
 }

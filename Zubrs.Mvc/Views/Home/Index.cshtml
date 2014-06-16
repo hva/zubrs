@@ -1,21 +1,35 @@
-﻿@model Zubrs.Mvc.ViewModels.HomeViewModel
+﻿@using Microsoft.Ajax.Utilities
+@model Zubrs.Mvc.ViewModels.HomeViewModel
 
 <div class="small-12 columns">
 
     <div class="row">
         <div class="small-12 columns">
             <ul data-orbit data-options="bullets:false;timer:false;circular:false">
-                {% for row in games|batch(4) %}
-                <li>
-                    <div class="row" style="margin: 0 15px;">
-                        {% for x in row %}
-                        <div class="small-3 columns{% if loop.last %} end{% endif %}">
-                            {% include 'inc/_game3.html' with {'x': x, 'competitions': competitions, 'teams': teams} %}
+                @foreach (var row in Model.Games)
+                {
+                    <li>
+                        <div class="row" style="margin: 0 15px;">
+                            @for (int i = 0; i < row.Length; i++)
+                            {
+                                <div class="small-3 columns @(i == row.Length - 1 ? "end" : null)">
+                                    @{Html.RenderPartial("Game", row[i]);}
+                                </div>
+                            }
                         </div>
-                        {% endfor %}
-                    </div>
-                </li>
-                {% endfor %}
+                    </li>
+                }
+                @*{% for row in games|batch(4) %}
+                    <li>
+                        <div class="row" style="margin: 0 15px;">
+                            {% for x in row %}
+                            <div class="small-3 columns{% if loop.last %} end{% endif %}">
+                                {% include 'inc/_game3.html' with {'x': x, 'competitions': competitions, 'teams': teams} %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </li>
+                    {% endfor %}*@
             </ul>
         </div>
 

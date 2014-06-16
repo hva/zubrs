@@ -1,0 +1,24 @@
+﻿@using Zubrs.Mvc.Infrastructure
+@model Zubrs.Models.Game
+
+<div class="bz-panel">
+    <p>@Html.RouteLink(@Model.Competition.Title, @RouteName.Competition, new { id = @Model.CompetitionId })</p>
+    <div class="row">
+        <div class="small-9 columns">
+            @Model.Home.Title
+        </div>
+        <div class="small-3 columns text-right">
+            @Model.HomeScore
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-9 columns">
+            @Model.Away.Title
+        </div>
+        <div class="small-3 columns text-right">
+            @Model.AwayScore
+        </div>
+    </div>
+    <p><span>@Html.DisplayFor(x => x.Date)</span></p>
+    @*<p><span>{{ x.date|date('j.m.Y H:i') }}</span></p>*@
+</div>

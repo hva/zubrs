@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Zubrs.Models
 {
@@ -10,6 +11,8 @@ namespace Zubrs.Models
         public int AwayId { get; set; }
         public int HomeScore { get; set; }
         public int AwayScore { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy, HH:mm}")]
         public DateTime Date { get; set; }
 
         public virtual Competition Competition { get; set; }
