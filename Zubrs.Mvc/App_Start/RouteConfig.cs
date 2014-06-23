@@ -16,6 +16,11 @@ namespace Zubrs.Mvc
             );
 
             routes.MapRoute(
+                RouteName.NewsItem,
+                "news/{id}"
+            );
+
+            routes.MapRoute(
                 RouteName.Teams,
                 "teams"
             );

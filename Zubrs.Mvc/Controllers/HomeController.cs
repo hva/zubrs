@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Ninject;
@@ -16,9 +17,13 @@ namespace Zubrs.Mvc.Controllers
 
         public async Task<ActionResult> Index()
         {
+            var news = await Repository.Articles.Where(x => !string.IsNullOrEmpty(x.ImageUrl)).ToArrayAsync();
+
             return View(new HomeViewModel
             {
-                Games = await LoadGamesAsync()
+                Games = await LoadGamesAsync(),
+                GeneralNews = news.Where(x => x.Type == ArticleType.General).ToArray(),
+                KidNews = news.Where(x => x.Type == ArticleType.Kids).ToArray(),
             });
         }
 

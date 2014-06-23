@@ -8,7 +8,7 @@ namespace Zubrs.Models
         public string Title { get; set; }
         public string ImageUrl { get; set; }
 
-        [Column(TypeName = "text")]
+        [Column(TypeName = "ntext")]
         public string Text { get; set; }
 
         public ArticleType Type { get; set; }

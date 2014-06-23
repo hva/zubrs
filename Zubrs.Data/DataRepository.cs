@@ -18,5 +18,6 @@ namespace Zubrs.Data
         public IQueryable<Competition> Competitions { get { return Context.Competitions; } }
         public IQueryable<Team> Teams { get { return Context.Teams; } }
         public IQueryable<Game> Games { get { return Context.Games; } }
+        public IQueryable<Article> Articles { get { return Context.Articles; } }
     }
 }

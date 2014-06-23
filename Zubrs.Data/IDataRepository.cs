@@ -11,5 +11,6 @@ namespace Zubrs.Data
         IQueryable<Competition> Competitions { get; }
         IQueryable<Team> Teams { get; }
         IQueryable<Game> Games { get; }
+        IQueryable<Article> Articles { get; }
     }
 }
