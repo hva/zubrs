@@ -1,7 +1,6 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="jquery-2.1.1.js" />
 /// <reference path="modernizr-2.6.2.js" />
-/// <reference path="respond.js" />
 /// <reference path="foundation/fastclick.js" />
 /// <reference path="foundation/foundation.abide.js" />
 /// <reference path="foundation/foundation.accordion.js" />
