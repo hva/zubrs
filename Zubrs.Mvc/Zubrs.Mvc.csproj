@@ -145,6 +145,8 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\normalize.css" />
+    <Content Include="Content\css\site.css" />
     <Content Include="Content\favicon.ico" />
     <Content Include="Content\img\bg.jpg" />
     <Content Include="Content\img\logo.png" />
@@ -198,6 +200,9 @@
     <Content Include="sass\_local.scss" />
     <Content Include="sass\site.scss" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\foundation\foundation.js" />
+    <Content Include="Scripts\foundation\foundation.orbit.js" />
+    <Content Include="Scripts\foundation\foundation.topbar.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />

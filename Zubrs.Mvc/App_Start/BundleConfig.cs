@@ -12,9 +12,8 @@ namespace Zubrs.Mvc
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                 "~/Scripts/modernizr-*"));
 
-            //bundles.Add(new SassBundle("~/bundles/css").Include(
-            //    "~/sass/normalize.scss",
-            //    "~/sass/site.scss"));
+            bundles.Add(new StyleBundle("~/bundles/css").Include(
+                "~/Content/css/*.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/jquery-{version}.js"));
@@ -25,7 +24,7 @@ namespace Zubrs.Mvc
                 "~/Scripts/foundation/foundation.topbar.js"
             ));
 
-            BundleTable.EnableOptimizations = true;
+            // BundleTable.EnableOptimizations = true;
         }
     }
 }
