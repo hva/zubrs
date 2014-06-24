@@ -41,14 +41,16 @@
         <div class="small-4 columns">
             <h5><a href="news.php">Новости</a></h5>
             <ul class="side-nav">
-                @foreach (var x in Model.GeneralNews)
+                @for(int i=0; i < Model.GeneralNews.Length; i++)
                 {
+                    var x = Model.GeneralNews[i];
                     <li data-bz-orbit-target="news-@x.Id">
                         @Html.RouteLink(x.Title, RouteName.NewsItem, new { id = x.Id })
                     </li>
-                @*{% if not loop.last %}
-                <li class="divider"></li>
-                {% endif %}*@
+                    if (i < Model.GeneralNews.Length - 1)
+                    {
+                        <li class="divider"></li>
+                    }
                 }
             </ul>
         </div>
