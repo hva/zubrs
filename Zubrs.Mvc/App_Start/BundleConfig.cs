@@ -1,5 +1,4 @@
 using System.Web.Optimization;
-using NSass;
 
 namespace Zubrs.Mvc
 {
@@ -13,9 +12,9 @@ namespace Zubrs.Mvc
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                 "~/Scripts/modernizr-*"));
 
-            bundles.Add(new SassBundle("~/bundles/css").Include(
-                "~/sass/normalize.scss",
-                "~/sass/site.scss"));
+            //bundles.Add(new SassBundle("~/bundles/css").Include(
+            //    "~/sass/normalize.scss",
+            //    "~/sass/site.scss"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/jquery-{version}.js"));
