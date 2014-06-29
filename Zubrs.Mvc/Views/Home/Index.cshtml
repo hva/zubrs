@@ -26,34 +26,12 @@
 
     <div class="row">
         <div class="small-4 columns">
-            <ul data-orbit>
-                @foreach (var x in Model.GeneralNews)
-                {
-                    <li data-bz-orbit-source="news-@x.Id">
-                        <img src="@x.ImageUrl" />
-                        <a href="@Url.RouteUrl(RouteName.NewsItem, new {id = x.Id})"><div class="orbit-caption">@x.Title</div></a>
-                    </li>
-                }
-            </ul>
+            @{ Html.RenderPartial("NewsImages", Model.GeneralNews); }
         </div>
-
         <div class="small-4 columns">
-            <h5><a href="news.php">Новости</a></h5>
-            <ul class="side-nav">
-                @for(int i=0; i < Model.GeneralNews.Length; i++)
-                {
-                    var x = Model.GeneralNews[i];
-                    <li data-bz-orbit-target="news-@x.Id">
-                        @Html.RouteLink(x.Title, RouteName.NewsItem, new { id = x.Id })
-                    </li>
-                    if (i < Model.GeneralNews.Length - 1)
-                    {
-                        <li class="divider"></li>
-                    }
-                }
-            </ul>
+            <h5>@Html.RouteLink("Новости", RouteName.News)</h5>
+            @{ Html.RenderPartial("NewsTitles", Model.GeneralNews); }
         </div>
-
         <div class="small-4 columns">
             <h5>@Html.RouteLink("Видео", RouteName.Video)</h5>
             <div class="flex-video">
@@ -61,49 +39,34 @@
             </div>
         </div>
     </div>
-    @*<div class="row">
+
+    <div class="row">
         <div class="small-4 columns">
-            <ul data-orbit data-options="timer_speed:6000">
-                {% for id, x in news_child %}
-                <li data-bz-orbit-source="news-{{ id }}">
-                    <img src="{{ x.img }}" />
-                    <a href="news.php?id={{ id }}"><div class="orbit-caption">{{ x.title }}</div></a>
-                </li>
-                {% endfor %}
-            </ul>
+            @{ Html.RenderPartial("NewsImages", Model.KidNews, new ViewDataDictionary { { "data-options", "timer_speed:6000" } });}
         </div>
 
-        <div class="small-4 columns">
-            <h5><a href="news.php">Детский спорт</a></h5>
-            <ul class="side-nav">
-                {% for id, x in news_child %}
-                <li data-bz-orbit-target="news-{{ id }}">
-                    <a href="news.php?id={{ id }}">{{ x.title }}</a>
-                </li>
-                {% if not loop.last %}
-                <li class="divider"></li>
-                {% endif %}
-                {% endfor %}
-            </ul>
+        <div class="small-4 columns end">
+            <h5>@Html.RouteLink("Детский спорт", RouteName.News)</h5>
+            @{ Html.RenderPartial("NewsTitles", Model.KidNews); }
         </div>
 
-        <div class="small-4 columns">
-            <h5><a href="competitions.php">Таблицы турниров 2014</a></h5>
-            <dl class="tabs" data-tab>
-                {% for id, c in competitions %}
-                <dd{% if loop.first %} class="active" {% endif %}>
-                    <a href="#tab-{{ id }}" title="{{ c.title }}">{{ c.title_short }}</a></dd>
+        @*<div class="small-4 columns">
+                <h5><a href="competitions.php">Таблицы турниров 2014</a></h5>
+                <dl class="tabs" data-tab>
+                    {% for id, c in competitions %}
+                    <dd{% if loop.first %} class="active" {% endif %}>
+                        <a href="#tab-{{ id }}" title="{{ c.title }}">{{ c.title_short }}</a></dd>
+                        {% endfor %}
+                </dl>
+                <div class="tabs-content">
+                    {% for id, c in competitions %}
+                    <div class="content{% if loop.first %} active{% endif %}" id="tab-{{ id }}">
+                        {% include 'inc/_competition_table.html' with {'competition': c, 'class': 'bz-table'} %}
+                    </div>
                     {% endfor %}
-            </dl>
-            <div class="tabs-content">
-                {% for id, c in competitions %}
-                <div class="content{% if loop.first %} active{% endif %}" id="tab-{{ id }}">
-                    {% include 'inc/_competition_table.html' with {'competition': c, 'class': 'bz-table'} %}
                 </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>*@
+            </div>*@
+    </div>
 </div>
 
 @section Scripts {

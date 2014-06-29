@@ -225,6 +225,8 @@
     <Content Include="Views\Nav\TopBar.cshtml" />
     <Content Include="Views\Nav\BottomBar.cshtml" />
     <Content Include="Views\Home\Game.cshtml" />
+    <Content Include="Views\Home\NewsImages.cshtml" />
+    <Content Include="Views\Home\NewsTitles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

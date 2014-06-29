@@ -1,0 +1,12 @@
+﻿@using Zubrs.Mvc.Infrastructure
+@model Zubrs.Models.Article[]
+
+<ul data-orbit data-options="@ViewData["data-options"]">
+    @foreach (var x in Model)
+    {
+        <li data-bz-orbit-source="news-@x.Id">
+            <img src="@x.ImageUrl" />
+            <a href="@Url.RouteUrl(RouteName.NewsItem, new {id = x.Id})"><div class="orbit-caption">@x.Title</div></a>
+        </li>
+    }
+</ul>
