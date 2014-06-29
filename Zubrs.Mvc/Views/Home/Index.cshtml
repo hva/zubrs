@@ -1,5 +1,4 @@
-﻿@using Microsoft.Ajax.Utilities
-@using Zubrs.Mvc.Infrastructure
+﻿@using Zubrs.Mvc.Infrastructure
 @model Zubrs.Mvc.ViewModels.HomeViewModel
 
 
@@ -56,10 +55,10 @@
         </div>
 
         <div class="small-4 columns">
-            @*<h5><a href="video.php">Видео</a></h5>
+            <h5>@Html.RouteLink("Видео", RouteName.Video)</h5>
             <div class="flex-video">
-                <iframe width="640" height="360" src="{{ load('video')|first.src }}" frameborder="0" allowfullscreen></iframe>
-            </div>*@
+                <iframe width="640" height="360" src="@Model.Video.VideoUrl" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
     </div>
     @*<div class="row">

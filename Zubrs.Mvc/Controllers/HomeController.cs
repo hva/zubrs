@@ -18,12 +18,14 @@ namespace Zubrs.Mvc.Controllers
         public async Task<ActionResult> Index()
         {
             var news = await Repository.Articles.Where(x => !string.IsNullOrEmpty(x.ImageUrl)).ToArrayAsync();
+            var video = await Repository.Videos.FirstAsync();
 
             return View(new HomeViewModel
             {
                 Games = await LoadGamesAsync(),
                 GeneralNews = news.Where(x => x.Type == ArticleType.General).ToArray(),
                 KidNews = news.Where(x => x.Type == ArticleType.Kids).ToArray(),
+                Video = video,
             });
         }
 

@@ -7,5 +7,6 @@ namespace Zubrs.Mvc.ViewModels
         public Game[][] Games { get; set; }
         public Article[] GeneralNews { get; set; }
         public Article[] KidNews { get; set; }
+        public Video Video { get; set; }
     }
 }

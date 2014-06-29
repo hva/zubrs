@@ -80,6 +80,13 @@ namespace Zubrs.Data
                 },
             });
 
+            db.Videos.AddRange(new[]
+            {
+                new Video { Title = "brest zubrs", VideoUrl = "//www.youtube.com/embed/eoItalLp9yo" },
+                new Video { Title = "Alexandr Lukashevich", VideoUrl = "//www.youtube.com/embed/ajLyQodaePM" },
+                new Video { Title = "Алекс Лукашевич", VideoUrl = "//www.youtube.com/embed/RCQixaysF8s" },
+            });
+
             base.Seed(db);
         }
     }
