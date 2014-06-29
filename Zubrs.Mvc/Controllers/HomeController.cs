@@ -32,7 +32,7 @@ namespace Zubrs.Mvc.Controllers
         private async Task<Game[][]> LoadGamesAsync()
         {
             var res = await Repository.Games
-                .Include(x => x.Competition)
+                .Include(x => x.Season.Competition)
                 .Include(x => x.Home)
                 .Include(x => x.Away)
                 .ToArrayAsync();

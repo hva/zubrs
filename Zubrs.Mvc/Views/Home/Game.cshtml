@@ -2,7 +2,7 @@
 @model Zubrs.Models.Game
 
 <div class="bz-panel">
-    <p>@Html.RouteLink(@Model.Competition.Title, @RouteName.Competition, new { id = @Model.CompetitionId })</p>
+    <p>@Html.RouteLink(@Model.Season.Competition.Title, @RouteName.Season, new { id = @Model.SeasonId })</p>
     <div class="row">
         <div class="small-9 columns">
             @Model.Home.Title

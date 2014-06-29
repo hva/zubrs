@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Data.Entity;
+using Ninject;
 using Zubrs.Models;
 
 namespace Zubrs.Data
 {
     public class DataInitializer : CreateDatabaseIfNotExists<ZubrsContext>
     {
+
+        [Inject]
+        public IDataRepository Repository { get; set; }
+
         protected override void Seed(ZubrsContext db)
         {
             Team zubrs, zubrs2, minsk, sugar, wolves;
@@ -18,24 +23,31 @@ namespace Zubrs.Data
                 wolves = new Team { Title = "Логишинские Волки" }
             });
 
-            Competition bl, bc;
+            Competition champ, cup;
             db.Competitions.AddRange(new[]
             {
-                bl = new Competition { Title = "Чемпионат РБ", TitleShort = "ЧРБ" },
-                bc = new Competition { Title = "Кубок РБ", TitleShort = "КРБ" }
+                champ = new Competition { Title = "Чемпионат РБ", TitleShort = "ЧРБ" },
+                cup = new Competition { Title = "Кубок РБ", TitleShort = "КРБ" }
+            });
+
+            Season champ_2013, cup_2013;
+            db.Seasons.AddRange(new[]
+            {
+                champ_2013 = new Season { Competition = champ, Year = 2013 },
+                cup_2013 = new Season { Competition = cup, Year = 2013 }
             });
 
             db.Games.AddRange(new[]
             {
-                new Game { Competition = bl, Date = new DateTime(2013, 10, 25, 12, 0, 0), Home = zubrs, Away = zubrs2, HomeScore = 12, AwayScore = 4, },
-                new Game { Competition = bl, Date = new DateTime(2013, 10, 25, 15, 0, 0), Home = wolves, Away = minsk, HomeScore = 13, AwayScore = 10, },
-                new Game { Competition = bl, Date = new DateTime(2013, 10, 26, 12, 0, 0), Home = zubrs2, Away = wolves, HomeScore = 13, AwayScore = 3, },
-                new Game { Competition = bl, Date = new DateTime(2013, 10, 25, 15, 0, 0), Home = zubrs, Away = minsk, HomeScore = 14, AwayScore = 4, },
-                new Game { Competition = bc, Date = new DateTime(2013, 10, 17, 12, 0, 0), Home = minsk, Away = sugar, HomeScore = 0, AwayScore = 20, },
-                new Game { Competition = bc, Date = new DateTime(2013, 10, 17, 15, 0, 0), Home = zubrs, Away = wolves, HomeScore = 12, AwayScore = 11, },
-                new Game { Competition = bc, Date = new DateTime(2013, 10, 18, 12, 0, 0), Home = minsk, Away = zubrs, HomeScore = 5, AwayScore = 7, },
-                new Game { Competition = bc, Date = new DateTime(2013, 10, 18, 15, 0, 0), Home = sugar, Away = wolves, HomeScore = 9, AwayScore = 2, },
-                new Game { Competition = bc, Date = new DateTime(2013, 10, 19, 12, 0, 0), Home = wolves, Away = minsk, HomeScore = 0, AwayScore = 9, }
+                new Game { Season = champ_2013, Date = new DateTime(2013, 10, 25, 12, 0, 0), Home = zubrs, Away = zubrs2, HomeScore = 12, AwayScore = 4, },
+                new Game { Season = champ_2013, Date = new DateTime(2013, 10, 25, 15, 0, 0), Home = wolves, Away = minsk, HomeScore = 13, AwayScore = 10, },
+                new Game { Season = champ_2013, Date = new DateTime(2013, 10, 26, 12, 0, 0), Home = zubrs2, Away = wolves, HomeScore = 13, AwayScore = 3, },
+                new Game { Season = champ_2013, Date = new DateTime(2013, 10, 25, 15, 0, 0), Home = zubrs, Away = minsk, HomeScore = 14, AwayScore = 4, },
+                new Game { Season = cup_2013, Date = new DateTime(2013, 10, 17, 12, 0, 0), Home = minsk, Away = sugar, HomeScore = 0, AwayScore = 20, },
+                new Game { Season = cup_2013, Date = new DateTime(2013, 10, 17, 15, 0, 0), Home = zubrs, Away = wolves, HomeScore = 12, AwayScore = 11, },
+                new Game { Season = cup_2013, Date = new DateTime(2013, 10, 18, 12, 0, 0), Home = minsk, Away = zubrs, HomeScore = 5, AwayScore = 7, },
+                new Game { Season = cup_2013, Date = new DateTime(2013, 10, 18, 15, 0, 0), Home = sugar, Away = wolves, HomeScore = 9, AwayScore = 2, },
+                new Game { Season = cup_2013, Date = new DateTime(2013, 10, 19, 12, 0, 0), Home = wolves, Away = minsk, HomeScore = 0, AwayScore = 9, }
             });
 
             db.Articles.AddRange(new[]
@@ -77,14 +89,14 @@ namespace Zubrs.Data
                     ImageUrl = "//zubrs.brest.by/components/com_datsogallery/img_originals/6_026.JPG",
                     Text = "11 - 13 октября 2013 г. в г. Бресте (Брестская область) завершилось Первенство Беларуси по бейсболу среди мальчиков 2001 г.р. и младше. \"Брестские зубры\" в очередной раз были представлены двумя командами. Первая команда Брестские зубры в упорной борьбе заняла 2 место, уступив команде Сахарный шторм со счетом 1:5. Вторая наша команда \"Брестские зубры-2\"  заняла третье место, оставив позади соперников из \"Минска\".\n\n**Лучшими игроками Первенства признаны:**\n\n* MVP самый полезный игрок первенства – **Кукла Роман**, («Сахарный шторм», г. Скидель);\n* Лучший питчер – **Ярошенко Кирилл**, («Брестские зубры», г.Брест);\n* Лучший бьющий – **Сергиенко Евгений**, («Брестские зубры», г.Брест);\n* Лучший защитник – **Новик Николай**, («Сахарный шторм», г. Скидель).",
                     Type = ArticleType.Kids,
-                },
+                }
             });
 
             db.Videos.AddRange(new[]
             {
                 new Video { Title = "brest zubrs", VideoUrl = "//www.youtube.com/embed/eoItalLp9yo" },
                 new Video { Title = "Alexandr Lukashevich", VideoUrl = "//www.youtube.com/embed/ajLyQodaePM" },
-                new Video { Title = "Алекс Лукашевич", VideoUrl = "//www.youtube.com/embed/RCQixaysF8s" },
+                new Video { Title = "Алекс Лукашевич", VideoUrl = "//www.youtube.com/embed/RCQixaysF8s" }
             });
 
             base.Seed(db);

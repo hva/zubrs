@@ -41,6 +41,11 @@ namespace Zubrs.Mvc
             );
 
             routes.MapRoute(
+                RouteName.Season,
+                "season/{id}"
+            );
+
+            routes.MapRoute(
                 RouteName.Management,
                 "management"
             );
