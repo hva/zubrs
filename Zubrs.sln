@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zubrs.Models", "Zubrs.Model
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zubrs.Data", "Zubrs.Data\Zubrs.Data.csproj", "{2F91D4AD-0A0B-44CE-BBA5-0137A77BB24B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zubrs.Extensions", "Zubrs.Extensions\Zubrs.Extensions.csproj", "{7A61181B-BF85-459A-9F64-29939CB09077}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{2F91D4AD-0A0B-44CE-BBA5-0137A77BB24B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F91D4AD-0A0B-44CE-BBA5-0137A77BB24B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F91D4AD-0A0B-44CE-BBA5-0137A77BB24B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A61181B-BF85-459A-9F64-29939CB09077}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A61181B-BF85-459A-9F64-29939CB09077}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A61181B-BF85-459A-9F64-29939CB09077}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A61181B-BF85-459A-9F64-29939CB09077}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

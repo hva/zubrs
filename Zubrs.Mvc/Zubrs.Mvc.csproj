@@ -139,7 +139,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Extensions.cs" />
     <Compile Include="Infrastructure\RouteName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
@@ -240,6 +239,10 @@
     <ProjectReference Include="..\Zubrs.Data\Zubrs.Data.csproj">
       <Project>{2F91D4AD-0A0B-44CE-BBA5-0137A77BB24B}</Project>
       <Name>Zubrs.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zubrs.Extensions\Zubrs.Extensions.csproj">
+      <Project>{7A61181B-BF85-459A-9F64-29939CB09077}</Project>
+      <Name>Zubrs.Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Zubrs.Models\Zubrs.Models.csproj">
       <Project>{3A9D3069-306A-44C6-9FAB-70426DC56C7B}</Project>

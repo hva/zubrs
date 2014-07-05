@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Ninject;
 using Zubrs.Data;
+using Zubrs.Extensions;
 using Zubrs.Models;
-using Zubrs.Mvc.Infrastructure;
 using Zubrs.Mvc.ViewModels;
 
 namespace Zubrs.Mvc.Controllers
