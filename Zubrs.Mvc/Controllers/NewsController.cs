@@ -17,10 +17,17 @@ namespace Zubrs.Mvc.Controllers
             menu.CurrentRouteName = RouteName.News;
         }
 
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> List()
         {
             var model = await Repository.Articles.ToArrayAsync();
             return View(model);
         }
+
+        public async Task<ActionResult> Detail(int id)
+        {
+            var model = await Repository.Articles.FirstAsync(x => x.Id == id);
+            return View(model);
+        }
+
     }
 }

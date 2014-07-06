@@ -8,10 +8,9 @@
     {
         var x = Model[i];
         var link = Url.RouteUrl(RouteName.NewsItem, new {id = x.Id});
-        var hasImage = !string.IsNullOrEmpty(x.ImageUrl);
-        
+
         <div class="row">
-            @if (hasImage)
+            @if (x.HasImage)
             {
                 <div class="small-2 columns">
                     <a class="th" href="@link"><img src="@x.ImageUrl"></a>

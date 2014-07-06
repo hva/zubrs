@@ -1,0 +1,16 @@
+﻿@using Zubrs.Mvc.Helpers
+@model Zubrs.Models.Article
+
+<div class="small-12 columns">
+    <h1>@Model.Title</h1>
+    
+    @if (Model.HasImage)
+    {
+        <p>
+            <img src="@Model.ImageUrl" />
+        </p>
+    }
+
+    @Html.Markdown(@Model.PreText)
+    @Html.Markdown(@Model.Text)
+</div>

@@ -15,5 +15,10 @@ namespace Zubrs.Models
         public string Text { get; set; }
 
         public ArticleType Type { get; set; }
+
+        public bool HasImage
+        {
+            get { return !string.IsNullOrEmpty(ImageUrl); }
+        }
     }
 }
