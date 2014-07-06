@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -18,14 +19,13 @@ namespace Zubrs.Mvc.Controllers
         public async Task<ActionResult> Index()
         {
             var news = await Repository.Articles.Where(x => !string.IsNullOrEmpty(x.ImageUrl)).ToArrayAsync();
-            var video = await Repository.Videos.FirstAsync();
-
             return View(new HomeViewModel
             {
                 Games = await LoadGamesAsync(),
                 GeneralNews = news.Where(x => x.Type == ArticleType.General).ToArray(),
                 KidNews = news.Where(x => x.Type == ArticleType.Kids).ToArray(),
-                Video = video,
+                Video = await Repository.Videos.FirstAsync(),
+                SeasonTables = await LoadSeasonTablesAsync(),
             });
         }
 
@@ -37,6 +37,21 @@ namespace Zubrs.Mvc.Controllers
                 .Include(x => x.Away)
                 .ToArrayAsync();
             return res.Chunk(4);
+        }
+
+        private async Task<SeasonTableViewModel[]> LoadSeasonTablesAsync()
+        {
+            Repository.SetLog(x => Debug.Write(x));
+            var res = await Repository.Ranks
+                .Include(x => x.Season.Competition)
+                .GroupBy(x => x.Season)
+                .Select(x => new SeasonTableViewModel
+                {
+                    Season = x.Key,
+                    Ranks = x.OrderBy(z => z.Place)
+                })
+                .ToArrayAsync();
+            return res;
         }
     }
 }

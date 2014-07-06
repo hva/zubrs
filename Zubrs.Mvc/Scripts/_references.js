@@ -4,3 +4,4 @@
 /// <reference path="foundation/foundation.js" />
 /// <reference path="foundation/foundation.orbit.js" />
 /// <reference path="foundation/foundation.topbar.js" />
+/// <reference path="foundation/foundation.tab.js" />

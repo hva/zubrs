@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Zubrs.Models.Rank>
+
+<table class="@ViewData["class"]">
+    <thead>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>И</td>
+            <td>В</td>
+            <td>П</td>
+            <td>%</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in @Model)
+        {
+            <tr>
+                <td>@x.Place.</td>
+                <td>@x.Team.Title</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -50,22 +50,27 @@
             @{ Html.RenderPartial("NewsTitles", Model.KidNews); }
         </div>
 
-        @*<div class="small-4 columns">
-                <h5><a href="competitions.php">Таблицы турниров 2014</a></h5>
-                <dl class="tabs" data-tab>
-                    {% for id, c in competitions %}
-                    <dd{% if loop.first %} class="active" {% endif %}>
-                        <a href="#tab-{{ id }}" title="{{ c.title }}">{{ c.title_short }}</a></dd>
-                        {% endfor %}
-                </dl>
-                <div class="tabs-content">
-                    {% for id, c in competitions %}
-                    <div class="content{% if loop.first %} active{% endif %}" id="tab-{{ id }}">
-                        {% include 'inc/_competition_table.html' with {'competition': c, 'class': 'bz-table'} %}
+        <div class="small-4 columns">
+            <h5>@Html.RouteLink("Таблицы турниров 2014", RouteName.Competitions)</h5>
+            <dl class="tabs" data-tab>
+                @for (int i = 0; i < @Model.SeasonTables.Length; i++)
+                {
+                    var table = @Model.SeasonTables[i];
+                    <dd class="@(i == 0 ? "active" : null)">
+                        <a href="#tab-@table.Season.Id" title="@table.Season.Competition.Title">@table.Season.Competition.TitleShort</a>
+                    </dd>
+                }
+            </dl>
+            <div class="tabs-content">
+                @for (int i = 0; i < @Model.SeasonTables.Length; i++)
+                {
+                    var table = @Model.SeasonTables[i];
+                    <div class="content @(i == 0 ? "active" : null)" id="tab-@table.Season.Id">
+                        @{ Html.RenderPartial("_CompetitionTable", table.Ranks, new ViewDataDictionary { { "class", "bz-table" } }); }
                     </div>
-                    {% endfor %}
-                </div>
-            </div>*@
+                }
+            </div>
+        </div>
     </div>
 </div>
 

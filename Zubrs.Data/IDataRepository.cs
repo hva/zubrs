@@ -9,6 +9,7 @@ namespace Zubrs.Data
         IQueryable<Competition> Competitions { get; }
         IQueryable<Team> Teams { get; }
         IQueryable<Game> Games { get; }
+        IQueryable<Rank> Ranks { get; }
         IQueryable<Article> Articles { get; }
         IQueryable<Video> Videos { get; }
 

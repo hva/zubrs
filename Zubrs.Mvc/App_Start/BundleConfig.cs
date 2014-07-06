@@ -21,7 +21,8 @@ namespace Zubrs.Mvc
             bundles.Add(new ScriptBundle("~/bundles/foundation").Include(
                 "~/Scripts/foundation/foundation.js",
                 "~/Scripts/foundation/foundation.orbit.js",
-                "~/Scripts/foundation/foundation.topbar.js"
+                "~/Scripts/foundation/foundation.topbar.js",
+                "~/Scripts/foundation/foundation.tab.js"
             ));
 
             // BundleTable.EnableOptimizations = true;

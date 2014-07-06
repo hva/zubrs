@@ -8,5 +8,6 @@ namespace Zubrs.Mvc.ViewModels
         public Article[] GeneralNews { get; set; }
         public Article[] KidNews { get; set; }
         public Video Video { get; set; }
+        public SeasonTableViewModel[] SeasonTables { get; set; }
     }
 }
