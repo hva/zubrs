@@ -24,7 +24,8 @@ namespace Zubrs.Mvc
 
             routes.MapRoute(
                 RouteName.Teams,
-                "teams"
+                "teams",
+                new { controller = "teams", action = "index" }
             );
 
             routes.MapRoute(
