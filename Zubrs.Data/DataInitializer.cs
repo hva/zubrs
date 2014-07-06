@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Data.Entity;
-using Ninject;
 using Zubrs.Models;
 
 namespace Zubrs.Data
 {
     public class DataInitializer : CreateDatabaseIfNotExists<ZubrsContext>
     {
-
-        [Inject]
-        public IDataRepository Repository { get; set; }
-
         protected override void Seed(ZubrsContext db)
+        {
+            AddSeasons(db);
+            AddArticles(db);
+            AddVideos(db);
+
+            db.SaveChanges();
+            base.Seed(db);
+        }
+
+        private static void AddSeasons(ZubrsContext db)
         {
             Team zubrs, zubrs2, minsk, sugar, wolves;
             db.Teams.AddRange(new[]
@@ -50,6 +55,16 @@ namespace Zubrs.Data
                 new Game { Season = cup_2013, Date = new DateTime(2013, 10, 19, 12, 0, 0), Home = wolves, Away = minsk, HomeScore = 0, AwayScore = 9, }
             });
 
+            // we need to insert items in database
+            // before ranks calculating
+            db.SaveChanges();
+
+            db.RefreshSeasonRanks(champ_2013.Id);
+            db.RefreshSeasonRanks(cup_2013.Id);
+        }
+
+        private static void AddArticles(ZubrsContext db)
+        {
             db.Articles.AddRange(new[]
             {
                 new Article {
@@ -91,15 +106,16 @@ namespace Zubrs.Data
                     Type = ArticleType.Kids,
                 }
             });
+        }
 
+        private static void AddVideos(ZubrsContext db)
+        {
             db.Videos.AddRange(new[]
             {
                 new Video { Title = "brest zubrs", VideoUrl = "//www.youtube.com/embed/eoItalLp9yo" },
                 new Video { Title = "Alexandr Lukashevich", VideoUrl = "//www.youtube.com/embed/ajLyQodaePM" },
                 new Video { Title = "Алекс Лукашевич", VideoUrl = "//www.youtube.com/embed/RCQixaysF8s" }
             });
-
-            base.Seed(db);
         }
     }
 }
