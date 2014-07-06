@@ -5,6 +5,7 @@ using Ninject;
 using Ninject.Web.Common;
 using Zubrs.Data;
 using Zubrs.Mvc;
+using Zubrs.Mvc.Infrastructure;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
@@ -63,6 +64,7 @@ namespace Zubrs.Mvc
         {
             kernel.Bind<ZubrsContext>().ToSelf().InRequestScope();
             kernel.Bind<IDataRepository>().To<DataRepository>();
+            kernel.Bind<MenuManager>().ToSelf().InRequestScope();
         }
     }
 }

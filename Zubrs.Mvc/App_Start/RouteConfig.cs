@@ -12,7 +12,8 @@ namespace Zubrs.Mvc
 
             routes.MapRoute(
                 RouteName.News,
-                "news"
+                "news",
+                new { controller = "news", action = "index" }
             );
 
             routes.MapRoute(
