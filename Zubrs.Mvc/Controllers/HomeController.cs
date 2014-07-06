@@ -35,6 +35,7 @@ namespace Zubrs.Mvc.Controllers
                 .Include(x => x.Season.Competition)
                 .Include(x => x.Home)
                 .Include(x => x.Away)
+                .Where(x => x.Home.ShowInMenu || x.Away.ShowInMenu)
                 .ToArrayAsync();
             return res.Chunk(4);
         }
@@ -49,6 +50,8 @@ namespace Zubrs.Mvc.Controllers
                 {
                     Season = x.Key,
                     Ranks = x
+                        .OrderByDescending(z => z.GamesWon / (double)z.GamesPlayed)
+                        .ThenByDescending(z => z.GamesPlayed)
                 })
                 .ToArrayAsync();
             return res;

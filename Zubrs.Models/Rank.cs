@@ -13,10 +13,13 @@ namespace Zubrs.Models
         public virtual Team Team { get; set; }
         public virtual Season Season { get; set; }
 
-        [DisplayFormat(DataFormatString = "{#.###}")]
-        public double Koeff
+        [DisplayFormat(DataFormatString = "{0:F3}")]
+        public double Coeff
         {
-            get { return 1; }
+            get
+            {
+                return GamesWon / (double)GamesPlayed;
+            }
         }
     }
 }
