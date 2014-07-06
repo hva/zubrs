@@ -1,2 +1,34 @@
-﻿<h2>Index</h2>
+﻿@using Zubrs.Mvc.Infrastructure
+@model Zubrs.Models.Article[]
 
+<div class="small-12 columns">
+    <h1>Новости</h1>
+    @for (int i = 0; i < Model.Length; i++)
+    {
+        var x = Model[i];
+        var link = Url.RouteUrl(RouteName.NewsItem, new {id = x.Id});
+        var hasImage = !string.IsNullOrEmpty(x.ImageUrl);
+        <h5><a href="@link">@x.Title</a></h5>
+        <div class="row">
+            @if (hasImage)
+            {
+                <div class="small-2 columns">
+                    <a class="th" href="@link"><img src="@x.ImageUrl"></a>
+                </div>
+                <div class="small-10 columns">
+                    <p>{{ x.body|markdown|striptags|slice(0,360) }}...</p>
+                </div>
+            }
+            else
+            {
+                <div class="small-12 columns">
+                    <p>{{ x.body|markdown|striptags|slice(0,230) }}...</p>
+                </div>
+            }
+        </div>
+        if (i < Model.Length - 1)
+        {
+            <hr />
+        }
+    }
+</div>
