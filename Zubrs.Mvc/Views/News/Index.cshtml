@@ -1,4 +1,5 @@
-﻿@using Zubrs.Mvc.Infrastructure
+﻿@using Zubrs.Mvc.Helpers
+@using Zubrs.Mvc.Infrastructure
 @model Zubrs.Models.Article[]
 
 <div class="small-12 columns">
@@ -8,7 +9,7 @@
         var x = Model[i];
         var link = Url.RouteUrl(RouteName.NewsItem, new {id = x.Id});
         var hasImage = !string.IsNullOrEmpty(x.ImageUrl);
-        <h5><a href="@link">@x.Title</a></h5>
+        
         <div class="row">
             @if (hasImage)
             {
@@ -16,13 +17,15 @@
                     <a class="th" href="@link"><img src="@x.ImageUrl"></a>
                 </div>
                 <div class="small-10 columns">
-                    <p>{{ x.body|markdown|striptags|slice(0,360) }}...</p>
+                    <h5><a href="@link">@x.Title</a></h5>
+                    @Html.Markdown(x.PreText)
                 </div>
             }
             else
             {
                 <div class="small-12 columns">
-                    <p>{{ x.body|markdown|striptags|slice(0,230) }}...</p>
+                    <h5><a href="@link">@x.Title</a></h5>
+                    @Html.Markdown(x.PreText)
                 </div>
             }
         </div>

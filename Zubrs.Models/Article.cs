@@ -9,6 +9,9 @@ namespace Zubrs.Models
         public string ImageUrl { get; set; }
 
         [Column(TypeName = "ntext")]
+        public string PreText { get; set; }
+
+        [Column(TypeName = "ntext")]
         public string Text { get; set; }
 
         public ArticleType Type { get; set; }
