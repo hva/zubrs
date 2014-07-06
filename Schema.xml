@@ -155,10 +155,10 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="Seasons" row="Id" />
 </row>
-<row name="Place" null="1" autoincrement="0">
+<row name="GamesPlayed" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="Points" null="1" autoincrement="0">
+<row name="GamesWon" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">

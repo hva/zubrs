@@ -12,14 +12,15 @@
         </tr>
     </thead>
     <tbody>
+        @{ int i = 1; }
         @foreach (var x in @Model)
         {
             <tr>
-                <td>@x.Place.</td>
+                <td>@(i++).</td>
                 <td>@x.Team.Title</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td>@x.GamesPlayed</td>
+                <td>@x.GamesWon</td>
+                <td>@(x.GamesPlayed - x.GamesWon)</td>
                 <td></td>
             </tr>
         }

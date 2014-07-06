@@ -27,19 +27,11 @@ namespace Zubrs.Data
             Ranks.RemoveRange(oldTable);
 
             var newTable = GetNewTable(seasonId);
-            int place = 1;
-            var newItems =
-                from x in newTable
-                orderby x.Value descending
-                select new Rank
-                {
-                    Place = place++,
-                    Points = x.Value,
-                    SeasonId = seasonId,
-                    TeamId = x.Key
-                };
-
-            Ranks.AddRange(newItems);
+            foreach (var rank in newTable.Values)
+            {
+                rank.SeasonId = seasonId;
+                Ranks.Add(rank);
+            }
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -57,17 +49,17 @@ namespace Zubrs.Data
                 .WillCascadeOnDelete(false);
         }
 
-        private Dictionary<int, int> GetNewTable(int seasonId)
+        private Dictionary<int, Rank> GetNewTable(int seasonId)
         {
-            const int pointsForWin = 3;
-            var table = new Dictionary<int, int>(); // teamId => points
-            var games = Games.Where(x => x.SeasonId == seasonId).ToArray();
+            var table = new Dictionary<int, Rank>(); // teamId => rank
+            var games = Games
+                .Where(x => x.SeasonId == seasonId)
+                .Where(x => x.HomeScore > 0 || x.AwayScore > 0).ToArray();
             foreach (var game in games)
             {
-                int homePoints = game.HomeScore > game.AwayScore ? pointsForWin : 0;
-                int awayPoints = pointsForWin - homePoints;
-                table.IncValue(game.HomeId, homePoints);
-                table.IncValue(game.AwayId, awayPoints);
+                bool isHomeWon = game.HomeScore > game.AwayScore;
+                table.IncRank(game.HomeId, isHomeWon);
+                table.IncRank(game.AwayId, !isHomeWon);
             }
             return table;
         }

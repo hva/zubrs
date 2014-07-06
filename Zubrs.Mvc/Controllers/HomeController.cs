@@ -48,7 +48,7 @@ namespace Zubrs.Mvc.Controllers
                 .Select(x => new SeasonTableViewModel
                 {
                     Season = x.Key,
-                    Ranks = x.OrderBy(z => z.Place)
+                    Ranks = x
                 })
                 .ToArrayAsync();
             return res;
