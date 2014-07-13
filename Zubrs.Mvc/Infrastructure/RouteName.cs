@@ -3,6 +3,7 @@
     public static class RouteName
     {
         public static string News = "News";
+        public static string NewsPage = "NewsPage";
         public static string NewsItem = "NewsItem";
         public static string Teams = "Teams";
         public static string Team = "Team";

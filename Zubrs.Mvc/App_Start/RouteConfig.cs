@@ -17,6 +17,12 @@ namespace Zubrs.Mvc
             );
 
             routes.MapRoute(
+                RouteName.NewsPage,
+                "news/page/{page}",
+                new { controller = "news", action = "list", page = 0 }
+            );
+
+            routes.MapRoute(
                 RouteName.NewsItem,
                 "news/{id}",
                 new { controller = "news", action = "detail" }

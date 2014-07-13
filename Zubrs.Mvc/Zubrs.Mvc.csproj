@@ -146,6 +146,7 @@
     </Compile>
     <Compile Include="Helpers\MarkdownHelper.cs" />
     <Compile Include="Infrastructure\MenuManager.cs" />
+    <Compile Include="Infrastructure\PaginatedList.cs" />
     <Compile Include="Infrastructure\RouteName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
@@ -207,6 +208,9 @@
     <Resource Include="sass\_local.scss" />
     <Resource Include="sass\site.scss" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="sass\site.css">
+      <DependentUpon>site.scss</DependentUpon>
+    </Content>
     <Content Include="Scripts\foundation\foundation.js" />
     <Content Include="Scripts\foundation\foundation.orbit.js" />
     <Content Include="Scripts\foundation\foundation.tab.js" />

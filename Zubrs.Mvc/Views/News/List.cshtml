@@ -1,10 +1,11 @@
 ﻿@using Zubrs.Mvc.Helpers
 @using Zubrs.Mvc.Infrastructure
-@model Zubrs.Models.Article[]
+@model PaginatedList<Zubrs.Models.Article>
 
 <div class="small-12 columns">
     <h1>Новости</h1>
-    @for (int i = 0; i < Model.Length; i++)
+
+    @for (int i = 0; i < Model.Count; i++)
     {
         var x = Model[i];
         var link = Url.RouteUrl(RouteName.NewsItem, new {id = x.Id});
@@ -28,9 +29,32 @@
                 </div>
             }
         </div>
-        if (i < Model.Length - 1)
+        if (i < Model.Count - 1)
         {
             <hr />
         }
     }
+    
+@if (Model.TotalPages > 1)
+{
+    <div class="row">
+        <div class="small-10 small-offset-2 columns">
+            <ul class="pagination">
+                @if (Model.HasPreviousPage)
+                {
+                    <li class="arrow"><a href="@Url.RouteUrl(RouteName.NewsPage, new {page = Model.PageIndex - 1})">&laquo;</a></li>
+                }
+                @for (int i = 0; i < Model.TotalPages; i++)
+                {
+                    <li class="@(i == Model.PageIndex ? "current" : null)"><a href="@Url.RouteUrl(RouteName.NewsPage, new {page = i})">@(i + 1)</a></li>
+                }
+                @if (Model.HasNextPage)
+                {
+                    <li class="arrow"><a href="@Url.RouteUrl(RouteName.NewsPage, new { page = Model.PageIndex + 1 })">&raquo;</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+
 </div>

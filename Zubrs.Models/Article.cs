@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Zubrs.Models
 {
@@ -15,6 +16,7 @@ namespace Zubrs.Models
         public string Text { get; set; }
 
         public ArticleType Type { get; set; }
+        public DateTime? Created { get; set; }
 
         public bool HasImage
         {

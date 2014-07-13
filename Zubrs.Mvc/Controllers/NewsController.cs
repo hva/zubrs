@@ -1,8 +1,10 @@
 ﻿using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Ninject;
 using Zubrs.Data;
+using Zubrs.Models;
 using Zubrs.Mvc.Infrastructure;
 
 namespace Zubrs.Mvc.Controllers
@@ -17,9 +19,10 @@ namespace Zubrs.Mvc.Controllers
             menu.CurrentRouteName = RouteName.News;
         }
 
-        public async Task<ActionResult> List()
+        public async Task<ActionResult> List(int? page)
         {
-            var model = await Repository.Articles.ToArrayAsync();
+            var model = new PaginatedList<Article>(page ?? 0, 5);
+            await model.SetSourceAsync(Repository.Articles.OrderByDescending(x => x.Created));
             return View(model);
         }
 
