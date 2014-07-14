@@ -1,4 +1,6 @@
-﻿namespace Zubrs.Models
+﻿using System.Collections.Generic;
+
+namespace Zubrs.Models
 {
     public class Team
     {
@@ -7,5 +9,7 @@
         public string TitleShort { get; set; }
         public bool ShowInMenu { get; set; }
         public int Sortorder { get; set; }
+
+        public virtual ICollection<Player> Players { get; set; }
     }
 }

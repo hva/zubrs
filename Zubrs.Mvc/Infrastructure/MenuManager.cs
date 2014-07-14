@@ -50,14 +50,15 @@ namespace Zubrs.Mvc.Infrastructure
 
         private MenuItem[] CreateTeamsMenu()
         {
-            var res = Repository.Teams.Where(x => x.ShowInMenu).Select(x =>
-                new MenuItem
+            var res = Repository.Teams
+                .Where(x => x.ShowInMenu)
+                .OrderBy(x => x.Sortorder)
+                .Select(x => new MenuItem
                 {
                     Title = x.Title,
                     RouteName = RouteName.Team,
                     RouteParams = new { id = x.Id }
-                }
-            );
+                });
             return res.ToArray();
         }
 

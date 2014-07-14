@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Zubrs.Models;
 
 namespace Zubrs.Data
@@ -13,6 +14,8 @@ namespace Zubrs.Data
         IQueryable<Player> Players { get; }
         IQueryable<Article> Articles { get; }
         IQueryable<Video> Videos { get; }
+
+        Task LoadPlayersAsync(Team team);
 
         void SetLog(Action<string> log);
     }

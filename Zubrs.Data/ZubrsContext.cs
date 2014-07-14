@@ -11,6 +11,7 @@ namespace Zubrs.Data
         public ZubrsContext()
         {
             Database.SetInitializer(new DataInitializer());
+            Configuration.LazyLoadingEnabled = false;
         }
 
         public DbSet<Team> Teams { get; set; }

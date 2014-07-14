@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Ninject;
 using Zubrs.Models;
 
@@ -22,5 +23,11 @@ namespace Zubrs.Data
         public IQueryable<Rank> Ranks { get { return Context.Ranks; } }
         public IQueryable<Article> Articles { get { return Context.Articles; } }
         public IQueryable<Video> Videos { get { return Context.Videos; } }
+
+        public async Task LoadPlayersAsync(Team team)
+        {
+            var entity = Context.Entry(team);
+            await entity.Collection(x => x.Players).LoadAsync();
+        }
     }
 }
