@@ -53,6 +53,9 @@
 <row name="Type" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
 </row>
+<row name="Created" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>Id</part>
 </key>
@@ -81,6 +84,9 @@
 <row name="ShowInMenu" null="0" autoincrement="0">
 <datatype>bit</datatype>
 </row>
+<row name="Sortorder" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>Id</part>
 </key>
@@ -159,6 +165,30 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="GamesWon" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>Id</part>
+</key>
+</table>
+<table x="1053" y="69" name="Players">
+<row name="Id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="TeamId" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Teams" row="Id" />
+</row>
+<row name="ImageUrl" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="Name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="Number" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Position" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">

@@ -1,20 +1,19 @@
-﻿
-{% set teams = load('teams') %}
-{% set team = teams[current] %}
-{% set players = team.players %}
+﻿@using Zubrs.Mvc.Infrastructure
+@model Zubrs.Mvc.ViewModels.TeamViewModel
 
 <div class="small-2 columns">
     <ul class="bz-side-nav">
-        {% for id, x in teams if not x.hidden %}
-        <li{% if current= = id %} class="active" {% endif %}>
-            <a href="/teams.php?id={{ id }}">{{ x.title_short|upper }}</a>
+        @foreach (var x in Model.Teams)
+        {
+            <li class="@(x.Id == Model.Team.Id ? "active" : null)">
+                @Html.RouteLink(x.TitleShort.ToUpper(), RouteName.Team, new { id = x.Id })
             </li>
-            {% endfor %}
+        }
     </ul>
 </div>
 
 <div class="small-10 columns">
-    <h1>{{ team.title|capitalize }}</h1>
+    <h1>@Model.Team.Title</h1>
     <table>
         <tbody>
             {% for x in players %}

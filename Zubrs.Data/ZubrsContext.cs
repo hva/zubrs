@@ -17,6 +17,7 @@ namespace Zubrs.Data
         public DbSet<Competition> Competitions { get; set; }
         public DbSet<Season> Seasons { get; set; }
         public DbSet<Game> Games { get; set; }
+        public DbSet<Player> Players { get; set; }
         public DbSet<Rank> Ranks { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Video> Videos { get; set; }

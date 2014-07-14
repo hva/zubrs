@@ -6,5 +6,6 @@
         public string Title { get; set; }
         public string TitleShort { get; set; }
         public bool ShowInMenu { get; set; }
+        public int Sortorder { get; set; }
     }
 }

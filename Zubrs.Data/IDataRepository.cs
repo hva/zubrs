@@ -10,6 +10,7 @@ namespace Zubrs.Data
         IQueryable<Team> Teams { get; }
         IQueryable<Game> Games { get; }
         IQueryable<Rank> Ranks { get; }
+        IQueryable<Player> Players { get; }
         IQueryable<Article> Articles { get; }
         IQueryable<Video> Videos { get; }
 

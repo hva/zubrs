@@ -6,9 +6,25 @@ namespace Zubrs.Data
 {
     public class DataInitializer : CreateDatabaseIfNotExists<ZubrsContext>
     {
+        private Team zubrs, zubrs2, minsk, sugar, wolves;
+        private Competition champ, cup;
+        private Season champ_2013, cup_2013;
+
         protected override void Seed(ZubrsContext db)
         {
+            AddTeams(db);
+            AddCompetitions(db);
             AddSeasons(db);
+            AddGames(db);
+
+            // we need to insert items in database
+            // before ranks calculating
+            db.SaveChanges();
+
+            db.RefreshSeasonRanks(champ_2013.Id);
+            db.RefreshSeasonRanks(cup_2013.Id);
+
+            AddPlayers(db);
             AddArticles(db);
             AddVideos(db);
 
@@ -16,32 +32,39 @@ namespace Zubrs.Data
             base.Seed(db);
         }
 
-        private static void AddSeasons(ZubrsContext db)
+        private void AddTeams(ZubrsContext db)
         {
-            Team zubrs, zubrs2, minsk, sugar, wolves;
             db.Teams.AddRange(new[]
             {
-                zubrs = new Team { Title = "Брестские Зубры", TitleShort = "зубры", ShowInMenu = true},
-                zubrs2 = new Team { Title = "Брестские Зубры-2", TitleShort = "зубры 2", ShowInMenu = true },
-                minsk = new Team { Title = "Минск" },
-                sugar = new Team { Title = "Сахарный Шторм" },
-                wolves = new Team { Title = "Логишинские Волки" }
+                zubrs = new Team {Title = "Брестские Зубры", TitleShort = "зубры", ShowInMenu = true, Sortorder = 0},
+                zubrs2 =
+                    new Team {Title = "Брестские Зубры-2", TitleShort = "зубры 2", ShowInMenu = true, Sortorder = 1},
+                minsk = new Team {Title = "Минск"},
+                sugar = new Team {Title = "Сахарный Шторм"},
+                wolves = new Team {Title = "Логишинские Волки"}
             });
+        }
 
-            Competition champ, cup;
+        private void AddCompetitions(ZubrsContext db)
+        {
             db.Competitions.AddRange(new[]
             {
                 champ = new Competition { Title = "Чемпионат РБ", TitleShort = "ЧРБ" },
                 cup = new Competition { Title = "Кубок РБ", TitleShort = "КРБ" }
             });
+        }
 
-            Season champ_2013, cup_2013;
+        private void AddSeasons(ZubrsContext db)
+        {
             db.Seasons.AddRange(new[]
             {
                 champ_2013 = new Season { Competition = champ, Year = 2013 },
                 cup_2013 = new Season { Competition = cup, Year = 2013 }
             });
+        }
 
+        private void AddGames(ZubrsContext db)
+        {
             db.Games.AddRange(new[]
             {
                 new Game { Season = champ_2013, Date = new DateTime(2013, 10, 25, 12, 0, 0), Home = zubrs, Away = zubrs2, HomeScore = 12, AwayScore = 4, },
@@ -54,13 +77,25 @@ namespace Zubrs.Data
                 new Game { Season = cup_2013, Date = new DateTime(2013, 10, 18, 15, 0, 0), Home = sugar, Away = wolves, HomeScore = 9, AwayScore = 2, },
                 new Game { Season = cup_2013, Date = new DateTime(2013, 10, 19, 12, 0, 0), Home = wolves, Away = minsk, HomeScore = 0, AwayScore = 9, }
             });
+        }
 
-            // we need to insert items in database
-            // before ranks calculating
-            db.SaveChanges();
+        private void AddPlayers(ZubrsContext db)
+        {
+            db.Players.AddRange(new[]
+            {
+                new Player { Team = zubrs, Name = "Кочурко Алексей", Number = 19, Position = "C,3B", ImageUrl = "//zubrs.brest.by/site/players/photos/ka4.jpg" },
+                new Player { Team = zubrs, Name = "Поплавский Андрей", Number = 7, Position = "P,OF", ImageUrl = "//zubrs.brest.by/site/players/photos/pop.jpg" },
+                new Player { Team = zubrs, Name = "Огулик Андрей", Number = 28, Position = "2B", ImageUrl = "//zubrs.brest.by/site/players/photos/ogu.jpg" },
+                new Player { Team = zubrs, Name = "Ветров Вадим", Number = 33, Position = "P,3B,OF", ImageUrl = "//zubrs.brest.by/site/players/photos/vet.jpg" },
+                new Player { Team = zubrs, Name = "Назаренко Антон", Number = 15, Position = "OF", ImageUrl = "//zubrs.brest.by/site/players/photos/naz.jpg" },
+                new Player { Team = zubrs, Name = "Карват Дмитрий", Number = 17, Position = "1B,OF", ImageUrl = "//zubrs.brest.by/site/players/photos/kar.jpg" },
 
-            db.RefreshSeasonRanks(champ_2013.Id);
-            db.RefreshSeasonRanks(cup_2013.Id);
+                new Player { Team = zubrs2, Name = "Александров Алексей", Number = 1, Position = "3B,OF", ImageUrl = "//zubrs.brest.by/site/players/photos/ale.jpg" },
+                new Player { Team = zubrs2, Name = "Лось Андрей", Number = 5, Position = "P,1B,OF", ImageUrl = "//zubrs.brest.by/site/players/photos/los.jpg" },
+                new Player { Team = zubrs2, Name = "Сокол Сергей", Number = 7, Position = "2B,SS,OF", ImageUrl = "//zubrs.brest.by/site/players/photos/sok.jpg" },
+                new Player { Team = zubrs2, Name = "Кашевский Илья", Number = 11, Position = "OF,P", ImageUrl = "//zubrs.brest.by/site/players/photos/18.jpg" },
+                new Player { Team = zubrs2, Name = "Лукашевич Алексей", Number = 77, Position = "P,SS,OF", ImageUrl = "//zubrs.brest.by/site/players/photos/lyk.jpg" }
+            });
         }
 
         private static void AddArticles(ZubrsContext db)
