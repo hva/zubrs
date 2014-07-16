@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -42,19 +41,23 @@ namespace Zubrs.Mvc.Controllers
 
         private async Task<SeasonTableViewModel[]> LoadSeasonTablesAsync()
         {
-            Repository.SetLog(x => Debug.Write(x));
             var res = await Repository.Ranks
+                .Include(x => x.Team)
                 .Include(x => x.Season.Competition)
+                .OrderByDescending(z => z.GamesWon/(double) z.GamesPlayed)
+                .ThenByDescending(z => z.GamesPlayed)
+                .ToArrayAsync();
+
+            // grouping on client side
+            // because Include() not working
+            return res
                 .GroupBy(x => x.Season)
                 .Select(x => new SeasonTableViewModel
                 {
                     Season = x.Key,
                     Ranks = x
-                        .OrderByDescending(z => z.GamesWon / (double)z.GamesPlayed)
-                        .ThenByDescending(z => z.GamesPlayed)
                 })
-                .ToArrayAsync();
-            return res;
+                .ToArray();
         }
     }
 }
