@@ -58,8 +58,8 @@ namespace Zubrs.Data
         {
             db.Seasons.AddRange(new[]
             {
-                champ_2013 = new Season { Competition = champ, Year = 2013 },
-                cup_2013 = new Season { Competition = cup, Year = 2013 }
+                champ_2013 = new Season { Competition = champ, Year = 2013, ShowOnSplash = true },
+                cup_2013 = new Season { Competition = cup, Year = 2013, ShowOnSplash = true }
             });
         }
 
