@@ -1,4 +1,6 @@
-﻿namespace Zubrs.Models
+﻿using System.Collections.Generic;
+
+namespace Zubrs.Models
 {
     public class Season
     {
@@ -6,6 +8,7 @@
         public int Year { get; set; }
         public int CompetitionId { get; set; }
 
-        public virtual Competition Competition { get; set; }
+        public Competition Competition { get; set; }
+        public ICollection<Game> Games { get; set; }
     }
 }

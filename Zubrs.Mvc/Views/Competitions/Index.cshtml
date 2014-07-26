@@ -1,4 +1,6 @@
-﻿@using Zubrs.Mvc.Infrastructure
+﻿@using Microsoft.Ajax.Utilities
+@using Zubrs.Extensions
+@using Zubrs.Mvc.Infrastructure
 @model Zubrs.Mvc.ViewModels.CompetitionViewModel
 
 <div class="small-2 columns">
@@ -12,8 +14,8 @@
     </ul>
 </div>
 
-@*<div class="small-10 columns">
-    <h1>{{ competition.title }}</h1>
+<div class="small-10 columns">
+    <h1>@Model.Competition.Title</h1>
 
     <h2 class="subheader">Таблица</h2>
     {% include 'inc/_competition_table.html' with {'competition': competition} %}
@@ -23,7 +25,6 @@
         <thead>
             <tr>
                 <th>Дата</th>
-                <th>Время</th>
                 <th>Место</th>
                 <th>Хозяева</th>
                 <th>Гости</th>
@@ -31,21 +32,22 @@
             </tr>
         </thead>
         <tbody>
-            {% for x in games if x.competition_id == current %}
-            <tr>
-                <td>{{ x.date|date('j.m.Y') }}</td>
-                <td>{{ x.date|date('H:i') }}</td>
-                <td>{{ places[x.place].title }}</td>
-                <td>{{ teams[x.team_home].title }}</td>
-                <td>{{ teams[x.team_away].title }}</td>
-                <td>{{ x.score_home ~ ':' ~ x.score_away }}</td>
-            </tr>
-            {% else %}
+            @foreach (var x in Model.Season.Games)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(_ => x.Date)</td>
+                    <td>@x.Place.DisplayName()</td>
+                    <td>@x.Home.Title</td>
+                    <td>@x.Away.Title</td>
+                    <td>@x.Score</td>
+                </tr>
+            }
+            @*{% else %}
             <tr>
                 <td colspan="6">Игры отсутствуют</td>
             </tr>
-            {% endfor %}
+            {% endfor %}*@
         </tbody>
     </table>
 
-</div>*@
+</div>

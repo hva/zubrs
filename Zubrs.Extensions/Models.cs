@@ -19,5 +19,17 @@ namespace Zubrs.Extensions
                 rank.GamesWon++;
             }
         }
+
+        public static string DisplayName(this GamePlace place)
+        {
+            switch (place)
+            {
+                case GamePlace.Brest: return "Брест";
+                case GamePlace.Minsk: return "Минск";
+                case GamePlace.Skidel: return "Скидель";
+                case GamePlace.Logishin: return "Логишин";
+            }
+            return null;
+        }
     }
 }

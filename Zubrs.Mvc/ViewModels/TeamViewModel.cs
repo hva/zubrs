@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -19,8 +18,6 @@ namespace Zubrs.Mvc.ViewModels
 
         public async Task InitAsync(int? id)
         {
-            Repository.SetLog(x => Debug.Write(x));
-
             Teams = await Repository.Teams
                 .Where(x => x.ShowInMenu)
                 .OrderBy(x => x.Sortorder)
@@ -32,8 +29,6 @@ namespace Zubrs.Mvc.ViewModels
                 throw new HttpException(404, "Page not found");
             }
             await Repository.LoadPlayersAsync(Team);
-
-            Repository.SetLog(null);
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Ninject;
 using Zubrs.Models;
 
@@ -26,8 +28,17 @@ namespace Zubrs.Data
 
         public async Task LoadPlayersAsync(Team team)
         {
-            var entity = Context.Entry(team);
-            await entity.Collection(x => x.Players).LoadAsync();
+            await Context.Entry(team).Collection(x => x.Players).LoadAsync();
+        }
+
+        public async Task LoadGamesAsync(Season season)
+        {
+            await Context.Entry(season)
+                .Collection(x => x.Games)
+                .Query()
+                .Include(x => x.Home)
+                .Include(x => x.Away)
+                .LoadAsync();
         }
     }
 }

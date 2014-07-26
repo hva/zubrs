@@ -44,6 +44,7 @@
     <Compile Include="ArticleType.cs" />
     <Compile Include="Competition.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GamePlace.cs" />
     <Compile Include="MenuItem.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

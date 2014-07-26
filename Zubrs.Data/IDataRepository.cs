@@ -7,6 +7,8 @@ namespace Zubrs.Data
 {
     public interface IDataRepository
     {
+        void SetLog(Action<string> log);
+
         IQueryable<Competition> Competitions { get; }
         IQueryable<Team> Teams { get; }
         IQueryable<Game> Games { get; }
@@ -16,7 +18,6 @@ namespace Zubrs.Data
         IQueryable<Video> Videos { get; }
 
         Task LoadPlayersAsync(Team team);
-
-        void SetLog(Action<string> log);
+        Task LoadGamesAsync(Season season);
     }
 }
