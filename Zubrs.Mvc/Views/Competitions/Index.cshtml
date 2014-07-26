@@ -1,5 +1,4 @@
-﻿@using Microsoft.Ajax.Utilities
-@using Zubrs.Extensions
+﻿@using Zubrs.Extensions
 @using Zubrs.Mvc.Infrastructure
 @model Zubrs.Mvc.ViewModels.CompetitionViewModel
 
@@ -32,21 +31,25 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var x in Model.Season.Games)
+            @if (Model.Season.Games.Count > 0)
+            {
+                foreach (var x in Model.Season.Games)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(_ => x.Date)</td>
+                        <td>@x.Place.DisplayName()</td>
+                        <td>@x.Home.Title</td>
+                        <td>@x.Away.Title</td>
+                        <td>@x.Score</td>
+                    </tr>
+                }
+            }
+            else
             {
                 <tr>
-                    <td>@Html.DisplayFor(_ => x.Date)</td>
-                    <td>@x.Place.DisplayName()</td>
-                    <td>@x.Home.Title</td>
-                    <td>@x.Away.Title</td>
-                    <td>@x.Score</td>
+                    <td colspan="5">Игры отсутствуют</td>
                 </tr>
             }
-            @*{% else %}
-            <tr>
-                <td colspan="6">Игры отсутствуют</td>
-            </tr>
-            {% endfor %}*@
         </tbody>
     </table>
 

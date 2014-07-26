@@ -164,6 +164,9 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Views\Competitions\Index.cshtml" />
+    <Content Include="Views\Home\_Game.cshtml" />
+    <Content Include="Views\Home\_NewsImages.cshtml" />
+    <Content Include="Views\Home\_NewsTitles.cshtml" />
     <Resource Include="sass\foundation\test.html" />
     <Resource Include="sass\foundation\components\_accordion.scss" />
     <Resource Include="sass\foundation\components\_alert-boxes.scss" />
@@ -240,9 +243,6 @@
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Views\Nav\TopBar.cshtml" />
     <Content Include="Views\Nav\BottomBar.cshtml" />
-    <Content Include="Views\Home\Game.cshtml" />
-    <Content Include="Views\Home\NewsImages.cshtml" />
-    <Content Include="Views\Home\NewsTitles.cshtml" />
     <Content Include="Views\Home\_CompetitionTable.cshtml" />
     <Content Include="Views\News\List.cshtml" />
     <Content Include="Views\News\Detail.cshtml" />
