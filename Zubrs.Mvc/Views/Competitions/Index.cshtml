@@ -1,1 +1,51 @@
-﻿asdasds
+﻿@using Zubrs.Mvc.Infrastructure
+@model Zubrs.Mvc.ViewModels.CompetitionViewModel
+
+<div class="small-2 columns">
+    <ul class="bz-side-nav">
+        @foreach (var x in Model.Competitions)
+        {
+            <li class="@(Model.Competition.Id == x.Id ? "active" : null)">
+                @Html.RouteLink(x.Title, RouteName.Competition, new { id = x.Id })
+            </li>
+        }
+    </ul>
+</div>
+
+@*<div class="small-10 columns">
+    <h1>{{ competition.title }}</h1>
+
+    <h2 class="subheader">Таблица</h2>
+    {% include 'inc/_competition_table.html' with {'competition': competition} %}
+
+    <h2 class="subheader">Расписание</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Время</th>
+                <th>Место</th>
+                <th>Хозяева</th>
+                <th>Гости</th>
+                <th>Результат</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in games if x.competition_id == current %}
+            <tr>
+                <td>{{ x.date|date('j.m.Y') }}</td>
+                <td>{{ x.date|date('H:i') }}</td>
+                <td>{{ places[x.place].title }}</td>
+                <td>{{ teams[x.team_home].title }}</td>
+                <td>{{ teams[x.team_away].title }}</td>
+                <td>{{ x.score_home ~ ':' ~ x.score_away }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6">Игры отсутствуют</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>*@
