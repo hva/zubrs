@@ -42,12 +42,14 @@ namespace Zubrs.Mvc
 
             routes.MapRoute(
                 RouteName.Competitions,
-                "competitions"
+                "competitions",
+                new { controller = "competitions", action = "index" }
             );
 
             routes.MapRoute(
                 RouteName.Competition,
-                "competitions/{id}"
+                "competitions/{id}",
+                new { controller = "competitions", action = "index" }
             );
 
             routes.MapRoute(

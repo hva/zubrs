@@ -34,12 +34,14 @@ namespace Zubrs.Mvc.Infrastructure
                     Title = "Команды",
                     RouteName = RouteName.Teams,
                     SubItems = CreateTeamsMenu(),
+                    IsActive = CurrentRouteName == RouteName.Teams,
                 },
                 new MenuItem
                 {
                     Title = "Соревнования",
                     RouteName = RouteName.Competitions,
                     SubItems = CreateCompetitionsMenu(),
+                    IsActive = CurrentRouteName == RouteName.Competitions,
                 },
                 new MenuItem { Title = "Руководство", RouteName = RouteName.Management },
                 new MenuItem { Title = "История", RouteName = RouteName.History },

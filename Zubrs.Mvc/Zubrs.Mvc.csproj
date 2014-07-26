@@ -137,6 +137,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CompetitionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NavController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -161,6 +162,7 @@
     <Content Include="Content\img\logo.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Competitions\Index.cshtml" />
     <Resource Include="sass\foundation\test.html" />
     <Resource Include="sass\foundation\components\_accordion.scss" />
     <Resource Include="sass\foundation\components\_alert-boxes.scss" />
