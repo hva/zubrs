@@ -17,7 +17,7 @@
     <h1>@Model.Competition.Title</h1>
 
     <h2 class="subheader">Таблица</h2>
-    {% include 'inc/_competition_table.html' with {'competition': competition} %}
+    @{ Html.RenderPartial("_CompetitionTable", Model.Season.Ranks); }
 
     <h2 class="subheader">Расписание</h2>
     <table>

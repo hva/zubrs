@@ -10,6 +10,7 @@ namespace Zubrs.Data
         void SetLog(Action<string> log);
 
         IQueryable<Competition> Competitions { get; }
+        IQueryable<Season> Seasons { get; }
         IQueryable<Team> Teams { get; }
         IQueryable<Game> Games { get; }
         IQueryable<Rank> Ranks { get; }
@@ -19,5 +20,6 @@ namespace Zubrs.Data
 
         Task LoadPlayersAsync(Team team);
         Task LoadGamesAsync(Season season);
+        Task LoadRanksAsync(Season season);
     }
 }

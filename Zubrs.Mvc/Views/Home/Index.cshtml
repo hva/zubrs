@@ -53,20 +53,20 @@
         <div class="small-4 columns">
             <h5>@Html.RouteLink("Таблицы турниров 2014", RouteName.Competitions)</h5>
             <dl class="tabs" data-tab>
-                @for (int i = 0; i < @Model.SeasonTables.Length; i++)
+                @for (int i = 0; i < @Model.Seasons.Length; i++)
                 {
-                    var table = @Model.SeasonTables[i];
+                    var season = @Model.Seasons[i];
                     <dd class="@(i == 0 ? "active" : null)">
-                        <a href="#tab-@table.Season.Id" title="@table.Season.Competition.Title">@table.Season.Competition.TitleShort</a>
+                        <a href="#tab-@season.Id" title="@season.Competition.Title">@season.Competition.TitleShort</a>
                     </dd>
                 }
             </dl>
             <div class="tabs-content">
-                @for (int i = 0; i < @Model.SeasonTables.Length; i++)
+                @for (int i = 0; i < @Model.Seasons.Length; i++)
                 {
-                    var table = @Model.SeasonTables[i];
-                    <div class="content @(i == 0 ? "active" : null)" id="tab-@table.Season.Id">
-                        @{ Html.RenderPartial("_CompetitionTable", table.Ranks, new ViewDataDictionary { { "class", "bz-table" } }); }
+                    var season = @Model.Seasons[i];
+                    <div class="content @(i == 0 ? "active" : null)" id="tab-@season.Id">
+                        @{ Html.RenderPartial("_CompetitionTable", season.Ranks, new ViewDataDictionary { { "class", "bz-table" } }); }
                     </div>
                 }
             </div>

@@ -11,5 +11,6 @@ namespace Zubrs.Models
 
         public Competition Competition { get; set; }
         public ICollection<Game> Games { get; set; }
+        public ICollection<Rank> Ranks { get; set; }
     }
 }

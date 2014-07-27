@@ -18,6 +18,7 @@ namespace Zubrs.Data
         }
 
         public IQueryable<Competition> Competitions { get { return Context.Competitions; } }
+        public IQueryable<Season> Seasons { get { return Context.Seasons; } }
         public IQueryable<Team> Teams { get { return Context.Teams; } }
         public IQueryable<Game> Games { get { return Context.Games; } }
         public IQueryable<Player> Players { get { return Context.Players; } }
@@ -37,6 +38,16 @@ namespace Zubrs.Data
                 .Query()
                 .Include(x => x.Home)
                 .Include(x => x.Away)
+                .LoadAsync();
+        }
+
+        public async Task LoadRanksAsync(Season season)
+        {
+            await Context.Entry(season)
+                .Collection(x => x.Ranks)
+                .Query()
+                .Include(x => x.Team)
+                .OrderByDescending(x => x.Percentage)
                 .LoadAsync();
         }
     }

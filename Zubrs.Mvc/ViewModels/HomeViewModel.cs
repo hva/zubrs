@@ -17,7 +17,7 @@ namespace Zubrs.Mvc.ViewModels
         public Article[] GeneralNews { get; set; }
         public Article[] KidNews { get; set; }
         public Video Video { get; set; }
-        public SeasonTableViewModel[] SeasonTables { get; set; }
+        public Season[] Seasons { get; set; }
 
         public async Task InitAsync()
         {
@@ -29,7 +29,7 @@ namespace Zubrs.Mvc.ViewModels
 
             Video = await Repository.Videos.FirstAsync();
 
-            SeasonTables = await LoadSeasonTablesAsync();
+            Seasons = await LoadSeasonsAsync();
         }
 
         private async Task<Game[][]> LoadGamesAsync()
@@ -43,26 +43,20 @@ namespace Zubrs.Mvc.ViewModels
             return res.Chunk(4);
         }
 
-        private async Task<SeasonTableViewModel[]> LoadSeasonTablesAsync()
+        private async Task<Season[]> LoadSeasonsAsync()
         {
-            var res = await Repository.Ranks
-                .Include(x => x.Team)
-                .Include(x => x.Season.Competition)
-                .Where(x => x.Season.ShowOnSplash)
-                .OrderByDescending(z => z.Percentage)
-                .ThenByDescending(z => z.GamesPlayed)
+            var seasons = await Repository.Seasons
+                .Include(x => x.Competition)
+                .Where(x => x.ShowOnSplash)
                 .ToArrayAsync();
 
-            // grouping on client side
-            // because Include() not working
-            return res
-                .GroupBy(x => x.Season)
-                .Select(x => new SeasonTableViewModel
-                {
-                    Season = x.Key,
-                    Ranks = x
-                })
-                .ToArray();
+            // TODO: try to run in single query
+            foreach (var s in seasons)
+            {
+                await Repository.LoadRanksAsync(s);
+            }
+
+            return seasons;
         }
     }
 }

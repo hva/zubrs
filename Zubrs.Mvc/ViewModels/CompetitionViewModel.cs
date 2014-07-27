@@ -36,6 +36,7 @@ namespace Zubrs.Mvc.ViewModels
             }
 
             await Repository.LoadGamesAsync(Season);
+            await Repository.LoadRanksAsync(Season);
         }
     }
 }
