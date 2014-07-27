@@ -10,16 +10,10 @@ namespace Zubrs.Models
         public int GamesPlayed { get; set; }
         public int GamesWon { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:F3}")]
+        public double Percentage { get; set; }
+
         public virtual Team Team { get; set; }
         public virtual Season Season { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:F3}")]
-        public double Coeff
-        {
-            get
-            {
-                return GamesWon / (double)GamesPlayed;
-            }
-        }
     }
 }

@@ -21,7 +21,7 @@
                 <td>@x.GamesPlayed</td>
                 <td>@x.GamesWon</td>
                 <td>@(x.GamesPlayed - x.GamesWon)</td>
-                <td>@Html.DisplayFor(item => x.Coeff)</td>
+                <td>@Html.DisplayFor(_ => x.Percentage)</td>
             </tr>
         }
     </tbody>

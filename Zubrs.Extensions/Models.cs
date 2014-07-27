@@ -18,6 +18,7 @@ namespace Zubrs.Extensions
             {
                 rank.GamesWon++;
             }
+            rank.Percentage = rank.GamesWon / (double)rank.GamesPlayed;
         }
 
         public static string DisplayName(this GamePlace place)

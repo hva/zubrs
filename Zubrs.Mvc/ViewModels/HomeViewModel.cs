@@ -48,7 +48,8 @@ namespace Zubrs.Mvc.ViewModels
             var res = await Repository.Ranks
                 .Include(x => x.Team)
                 .Include(x => x.Season.Competition)
-                .OrderByDescending(z => z.GamesWon/(double) z.GamesPlayed)
+                .Where(x => x.Season.ShowOnSplash)
+                .OrderByDescending(z => z.Percentage)
                 .ThenByDescending(z => z.GamesPlayed)
                 .ToArrayAsync();
 
