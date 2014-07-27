@@ -6,7 +6,7 @@
         @foreach (var x in Model)
         {
             <li>
-                @if (x.ImageUrl != null)
+                @if (!string.IsNullOrEmpty(x.ImageUrl))
                 {
                     <div class="row">
                         <div class="small-4 columns">
