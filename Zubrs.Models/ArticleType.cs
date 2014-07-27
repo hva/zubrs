@@ -4,5 +4,6 @@
     {
         General = 0,
         Kids,
+        History,
     }
 }

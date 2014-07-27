@@ -138,6 +138,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CompetitionsController.cs" />
+    <Compile Include="Controllers\HistoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManagementController.cs" />
     <Compile Include="Controllers\NavController.cs" />
@@ -169,6 +170,7 @@
     <Content Include="Views\Home\_NewsTitles.cshtml" />
     <Content Include="Views\Shared\_CompetitionTable.cshtml" />
     <Content Include="Views\Management\Index.cshtml" />
+    <Content Include="Views\History\Index.cshtml" />
     <Resource Include="sass\foundation\test.html" />
     <Resource Include="sass\foundation\components\_accordion.scss" />
     <Resource Include="sass\foundation\components\_alert-boxes.scss" />

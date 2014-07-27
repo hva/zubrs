@@ -52,11 +52,6 @@ namespace Zubrs.Mvc
                 new { controller = "competitions", action = "index" }
             );
 
-            //routes.MapRoute(
-            //    RouteName.Season,
-            //    "season/{id}"
-            //);
-
             routes.MapRoute(
                 RouteName.Management,
                 "management",
@@ -65,7 +60,8 @@ namespace Zubrs.Mvc
 
             routes.MapRoute(
                 RouteName.History,
-                "history"
+                "history",
+                new { controller = "history", action = "index" }
             );
 
             routes.MapRoute(
