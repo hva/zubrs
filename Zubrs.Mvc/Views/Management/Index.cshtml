@@ -1,0 +1,33 @@
+﻿@model Zubrs.Models.Manager[]
+
+<div class="small-12 columns">
+    <h1>Руководство клуба</h1>
+    <ul class="small-block-grid-3">
+        @foreach (var x in Model)
+        {
+            <li>
+                @if (x.ImageUrl != null)
+                {
+                    <div class="row">
+                        <div class="small-4 columns">
+                            <img class="th left" src="@x.ImageUrl" />
+                        </div>
+                        <div class="small-8 columns">
+                            <h5>@x.Title</h5>
+                            <p>@x.Name</p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row">
+                        <div class="small-12 columns">
+                            <h5>@x.Title</h5>
+                            <p>@x.Name</p>
+                        </div>
+                    </div>
+                }
+            </li>
+        }
+    </ul>
+</div>

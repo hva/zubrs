@@ -43,7 +43,12 @@ namespace Zubrs.Mvc.Infrastructure
                     SubItems = CreateCompetitionsMenu(),
                     IsActive = CurrentRouteName == RouteName.Competitions,
                 },
-                new MenuItem { Title = "Руководство", RouteName = RouteName.Management },
+                new MenuItem
+                {
+                    Title = "Руководство",
+                    RouteName = RouteName.Management,
+                    IsActive = CurrentRouteName == RouteName.Management,
+                },
                 new MenuItem { Title = "История", RouteName = RouteName.History },
                 new MenuItem { Title = "Фото", RouteName = RouteName.Photo },
                 new MenuItem { Title = "Видео", RouteName = RouteName.Video }

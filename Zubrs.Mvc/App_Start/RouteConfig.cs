@@ -52,14 +52,15 @@ namespace Zubrs.Mvc
                 new { controller = "competitions", action = "index" }
             );
 
-            routes.MapRoute(
-                RouteName.Season,
-                "season/{id}"
-            );
+            //routes.MapRoute(
+            //    RouteName.Season,
+            //    "season/{id}"
+            //);
 
             routes.MapRoute(
                 RouteName.Management,
-                "management"
+                "management",
+                new { controller = "management", action = "index" }
             );
 
             routes.MapRoute(
