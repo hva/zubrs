@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Zubrs.Models
@@ -22,6 +23,14 @@ namespace Zubrs.Models
         public bool HasImage
         {
             get { return !string.IsNullOrEmpty(ImageUrl); }
+        }
+
+        public string MenuTitleSafe
+        {
+            get
+            {
+                return string.IsNullOrEmpty(MenuTitle) ? Title : MenuTitle;
+            }
         }
     }
 }

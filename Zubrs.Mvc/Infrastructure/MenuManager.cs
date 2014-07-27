@@ -49,7 +49,13 @@ namespace Zubrs.Mvc.Infrastructure
                     RouteName = RouteName.Management,
                     IsActive = CurrentRouteName == RouteName.Management,
                 },
-                new MenuItem { Title = "История", RouteName = RouteName.History },
+                new MenuItem
+                {
+                    Title = "История",
+                    RouteName = RouteName.History,
+                    SubItems = CreateHistoryMenu(),
+                    IsActive = CurrentRouteName == RouteName.History,
+                },
                 new MenuItem { Title = "Фото", RouteName = RouteName.Photo },
                 new MenuItem { Title = "Видео", RouteName = RouteName.Video }
             };
@@ -80,6 +86,19 @@ namespace Zubrs.Mvc.Infrastructure
                 }
             );
             return res.ToArray();
+        }
+
+        private MenuItem[] CreateHistoryMenu()
+        {
+            return Repository.Articles
+                .Where(x => x.Type == ArticleType.History)
+                .Select(x => new MenuItem
+                {
+                    Title = x.MenuTitle,
+                    RouteName = RouteName.HistoryItem,
+                    RouteParams = new { id = x.Id }
+                })
+                .ToArray();
         }
     }
 }

@@ -1,20 +1,26 @@
-﻿<div class="small-2 columns">
+﻿@using Zubrs.Mvc.Helpers
+@using Zubrs.Mvc.Infrastructure
+@model Zubrs.Mvc.ViewModels.HistoryViewModel
+
+<div class="small-2 columns">
     <ul class="bz-side-nav">
-        {% for id, x in items %}
-        <li{% if current= = id %} class="active" {% endif %}>
-            <a href="/history.php?id={{ id }}">{{ x.menu_title|default(x.title)|upper }}</a>
+        @foreach (var x in Model.Items)
+        {
+            <li class="@(x.Id == Model.Item.Id ? "active" : null )">
+                @Html.RouteLink(x.MenuTitleSafe.ToUpper(), RouteName.HistoryItem, new { id = x.Id })
             </li>
-            {% endfor %}
+        }
     </ul>
 </div>
 
 <div class="small-10 columns">
-    <h1>{{ item.title|capitalize }}</h1>
-
-    {% if item.img %}
-    <p><img src="{{ item.img }}" class="th" /></p>
-    {% endif %}
-
-    {{ item.body|markdown }}
+    <h1>@Model.Item.Title</h1>
+    
+    @if (Model.Item.HasImage)
+    {
+        <p><img src="@Model.Item.ImageUrl" class="th" /></p>
+    }
+    
+    @Html.Markdown(Model.Item.Text)
 
 </div>

@@ -12,6 +12,7 @@
         public static string Season = "Season";
         public static string Management = "Management";
         public static string History = "History";
+        public static string HistoryItem = "HistoryItem";
         public static string Photo = "Photo";
         public static string Video = "Video";
     }

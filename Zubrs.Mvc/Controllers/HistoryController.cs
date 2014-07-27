@@ -1,12 +1,24 @@
-﻿using System.Web.Mvc;
+﻿using System.Threading.Tasks;
+using System.Web.Mvc;
+using Ninject;
+using Zubrs.Mvc.Infrastructure;
+using Zubrs.Mvc.ViewModels;
 
 namespace Zubrs.Mvc.Controllers
 {
     public class HistoryController : Controller
     {
-        public ActionResult Index()
+        [Inject]
+        public HistoryViewModel ViewModel { get; set; }
+
+        [Inject]
+        public MenuManager MenuManager { get; set; }
+
+        public async Task<ActionResult> Index(int? id)
         {
-            return View();
+            MenuManager.CurrentRouteName = RouteName.History;
+            await ViewModel.InitAsync(id);
+            return View(ViewModel);
         }
     }
 }

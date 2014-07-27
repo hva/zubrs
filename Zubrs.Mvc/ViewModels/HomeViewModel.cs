@@ -23,7 +23,10 @@ namespace Zubrs.Mvc.ViewModels
         {
             Games = await LoadGamesAsync();
 
-            var news = await Repository.Articles.Where(x => !string.IsNullOrEmpty(x.ImageUrl)).ToArrayAsync();
+            var news = await Repository.Articles
+                .Where(x => !string.IsNullOrEmpty(x.ImageUrl))
+                .Where(x => x.Type == ArticleType.General || x.Type == ArticleType.Kids)
+                .ToArrayAsync();
             GeneralNews = news.Where(x => x.Type == ArticleType.General).ToArray();
             KidNews = news.Where(x => x.Type == ArticleType.Kids).ToArray();
 

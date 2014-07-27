@@ -22,7 +22,10 @@ namespace Zubrs.Mvc.Controllers
         public async Task<ActionResult> List(int? page)
         {
             var model = new PaginatedList<Article>(page ?? 0, 5);
-            await model.SetSourceAsync(Repository.Articles.OrderByDescending(x => x.Created));
+            var source = Repository.Articles
+                .Where(x => x.Type != ArticleType.History)
+                .OrderByDescending(x => x.Created);
+            await model.SetSourceAsync(source);
             return View(model);
         }
 

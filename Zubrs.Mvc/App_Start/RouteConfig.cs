@@ -65,6 +65,12 @@ namespace Zubrs.Mvc
             );
 
             routes.MapRoute(
+                RouteName.HistoryItem,
+                "history/{id}",
+                new { controller = "history", action = "index" }
+            );
+
+            routes.MapRoute(
                 RouteName.Photo,
                 "photo"
             );
