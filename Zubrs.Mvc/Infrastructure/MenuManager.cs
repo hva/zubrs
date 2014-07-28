@@ -17,6 +17,8 @@ namespace Zubrs.Mvc.Infrastructure
         public async Task InitAsync(string currentRouteName)
         {
             var teams = await CreateTeamsMenuAsync();
+            var competitions = await CreateCompetitionsMenuAsync();
+            var history = await CreateHistoryMenuAsync();
 
             Items = new[]
             {
@@ -37,7 +39,7 @@ namespace Zubrs.Mvc.Infrastructure
                 {
                     Title = "Соревнования",
                     RouteName = RouteName.Competitions,
-                    SubItems = CreateCompetitionsMenu(),
+                    SubItems = competitions,
                     IsActive = currentRouteName == RouteName.Competitions,
                 },
                 new MenuItem
@@ -50,11 +52,11 @@ namespace Zubrs.Mvc.Infrastructure
                 {
                     Title = "История",
                     RouteName = RouteName.History,
-                    SubItems = CreateHistoryMenu(),
+                    SubItems = history,
                     IsActive = currentRouteName == RouteName.History,
-                },
-                new MenuItem { Title = "Фото", RouteName = RouteName.Photo },
-                new MenuItem { Title = "Видео", RouteName = RouteName.Video }
+                }
+                //new MenuItem { Title = "Фото", RouteName = RouteName.Photo },
+                //new MenuItem { Title = "Видео", RouteName = RouteName.Video }
             };
         }
 
@@ -72,30 +74,26 @@ namespace Zubrs.Mvc.Infrastructure
                 }).ToArray();
         }
 
-        private MenuItem[] CreateCompetitionsMenu()
+        private async Task<MenuItem[]> CreateCompetitionsMenuAsync()
         {
-            var res = Repository.Competitions.Select(x =>
-                new MenuItem
+            var res = await Repository.Competitions.ToArrayAsync();
+            return res.Select(x => new MenuItem
                 {
                     Title = x.Title,
                     RouteName = RouteName.Competition,
                     RouteParams = new { id = x.Id }
-                }
-            );
-            return res.ToArray();
+                }).ToArray();
         }
 
-        private MenuItem[] CreateHistoryMenu()
+        private async Task<MenuItem[]> CreateHistoryMenuAsync()
         {
-            return Repository.Articles
-                .Where(x => x.Type == ArticleType.History)
-                .Select(x => new MenuItem
+            var res = await Repository.Articles.Where(x => x.Type == ArticleType.History).ToArrayAsync();
+            return res.Select(x => new MenuItem
                 {
                     Title = x.MenuTitle,
                     RouteName = RouteName.HistoryItem,
                     RouteParams = new { id = x.Id }
-                })
-                .ToArray();
+                }).ToArray();
         }
     }
 }
