@@ -218,11 +218,8 @@
     <Resource Include="sass\_local-table.scss" />
     <Resource Include="sass\_local-topbar.scss" />
     <Resource Include="sass\_local.scss" />
-    <Resource Include="sass\site.scss" />
+    <Content Include="sass\site.scss" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
-    <Content Include="sass\site.css">
-      <DependentUpon>site.scss</DependentUpon>
-    </Content>
     <Content Include="Scripts\foundation\foundation.js" />
     <Content Include="Scripts\foundation\foundation.orbit.js" />
     <Content Include="Scripts\foundation\foundation.tab.js" />
