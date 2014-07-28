@@ -14,13 +14,13 @@ namespace Zubrs.Mvc.Controllers
         [Inject]
         public IDataRepository Repository { get; set; }
 
-        public NewsController(MenuManager menu)
-        {
-            menu.CurrentRouteName = RouteName.News;
-        }
+        [Inject]
+        public MenuManager MenuManager { get; set; }
 
         public async Task<ActionResult> List(int? page)
         {
+            await MenuManager.InitAsync(RouteName.News);
+
             var model = new PaginatedList<Article>(page ?? 0, 5);
             var source = Repository.Articles
                 .Where(x => x.Type != ArticleType.History)
@@ -31,6 +31,7 @@ namespace Zubrs.Mvc.Controllers
 
         public async Task<ActionResult> Detail(int id)
         {
+            await MenuManager.InitAsync(RouteName.News);
             var model = await Repository.Articles.FirstAsync(x => x.Id == id);
             return View(model);
         }

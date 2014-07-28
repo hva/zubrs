@@ -11,13 +11,12 @@ namespace Zubrs.Mvc.Controllers
         [Inject]
         public TeamViewModel ViewModel { get; set; }
 
-        public TeamsController(MenuManager menuManager)
-        {
-            menuManager.CurrentRouteName = RouteName.Teams;
-        }
+        [Inject]
+        public MenuManager MenuManager { get; set; }
 
         public async Task<ActionResult> Index(int? id)
         {
+            await MenuManager.InitAsync(RouteName.Teams);
             await ViewModel.InitAsync(id);
             return View(ViewModel);
         }

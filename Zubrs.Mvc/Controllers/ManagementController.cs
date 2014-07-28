@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Threading.Tasks;
+using System.Web.Mvc;
 using Ninject;
 using Zubrs.Models;
 using Zubrs.Mvc.Infrastructure;
@@ -10,9 +11,9 @@ namespace Zubrs.Mvc.Controllers
         [Inject]
         public MenuManager MenuManager { get; set; }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            MenuManager.CurrentRouteName = RouteName.Management;
+            await MenuManager.InitAsync(RouteName.Management);
 
             var data = new[]
             {

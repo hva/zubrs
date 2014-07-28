@@ -16,7 +16,7 @@ namespace Zubrs.Mvc.Controllers
 
         public async Task<ActionResult> Index(int? id)
         {
-            MenuManager.CurrentRouteName = RouteName.History;
+            await MenuManager.InitAsync(RouteName.History);
             await ViewModel.InitAsync(id);
             return View(ViewModel);
         }

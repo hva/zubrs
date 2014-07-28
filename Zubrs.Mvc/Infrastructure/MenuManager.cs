@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
 using Ninject;
 using Zubrs.Data;
 using Zubrs.Models;
@@ -7,72 +9,67 @@ namespace Zubrs.Mvc.Infrastructure
 {
     public class MenuManager
     {
-        private MenuItem[] items;
-
         [Inject]
         public IDataRepository Repository { get; set; }
 
-        public string CurrentRouteName { get; set; }
+        public MenuItem[] Items { get; private set; }
 
-        public MenuItem[] Items
+        public async Task InitAsync(string currentRouteName)
         {
-            get { return items ?? (items = CreateMenu()); }
-        }
+            var teams = await CreateTeamsMenuAsync();
 
-        private MenuItem[] CreateMenu()
-        {
-            return new[]
+            Items = new[]
             {
                 new MenuItem
                 {
                     Title = "Новости",
                     RouteName = RouteName.News,
-                    IsActive = CurrentRouteName == RouteName.News,
+                    IsActive = currentRouteName == RouteName.News,
                 },
                 new MenuItem
                 {
                     Title = "Команды",
                     RouteName = RouteName.Teams,
-                    SubItems = CreateTeamsMenu(),
-                    IsActive = CurrentRouteName == RouteName.Teams,
+                    SubItems = teams,
+                    IsActive = currentRouteName == RouteName.Teams,
                 },
                 new MenuItem
                 {
                     Title = "Соревнования",
                     RouteName = RouteName.Competitions,
                     SubItems = CreateCompetitionsMenu(),
-                    IsActive = CurrentRouteName == RouteName.Competitions,
+                    IsActive = currentRouteName == RouteName.Competitions,
                 },
                 new MenuItem
                 {
                     Title = "Руководство",
                     RouteName = RouteName.Management,
-                    IsActive = CurrentRouteName == RouteName.Management,
+                    IsActive = currentRouteName == RouteName.Management,
                 },
                 new MenuItem
                 {
                     Title = "История",
                     RouteName = RouteName.History,
                     SubItems = CreateHistoryMenu(),
-                    IsActive = CurrentRouteName == RouteName.History,
+                    IsActive = currentRouteName == RouteName.History,
                 },
                 new MenuItem { Title = "Фото", RouteName = RouteName.Photo },
                 new MenuItem { Title = "Видео", RouteName = RouteName.Video }
             };
         }
 
-        private MenuItem[] CreateTeamsMenu()
+        private async Task<MenuItem[]> CreateTeamsMenuAsync()
         {
-            var res = Repository.Teams
+            var res = await Repository.Teams
                 .Where(x => x.ShowInMenu)
                 .OrderBy(x => x.Sortorder)
-                .Select(x => new MenuItem
+                .ToArrayAsync();
+            return res.Select(x => new MenuItem
                 {
                     Title = x.Title,
                     RouteName = RouteName.Team,
                     RouteParams = new { id = x.Id }
-                });
-            return res.ToArray();
+                }).ToArray();
         }
 
         private MenuItem[] CreateCompetitionsMenu()

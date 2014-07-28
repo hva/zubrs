@@ -11,13 +11,12 @@ namespace Zubrs.Mvc.Controllers
         [Inject]
         public CompetitionViewModel ViewModel { get; set; }
 
-        public CompetitionsController(MenuManager menuManager)
-        {
-            menuManager.CurrentRouteName = RouteName.Competitions;
-        }
+        [Inject]
+        public MenuManager MenuManager { get; set; }
 
         public async Task<ActionResult> Index(int? id)
         {
+            await MenuManager.InitAsync(RouteName.Competitions);
             await ViewModel.InitAsync(id);
             return View(ViewModel);
         }
