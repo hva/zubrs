@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Zubrs.Mvc.Infrastructure
+<!DOCTYPE html>
 <!--[if IE 9]><html class="lt-ie10" lang="ru" > <![endif]-->
 <html class="no-js" lang="ru">
 <head>
@@ -21,8 +22,7 @@
             </div>
             <div class="large-4 columns">
                 <ul class="inline-list right">
-                    <li><a href="#" data-reveal-id="loginModal" data-reveal>Войти</a></li>
-                    <li><a href="#" data-reveal-id="registerModal" data-reveal>Зарегистрироваться</a></li>
+                    <li>@Html.RouteLink("Войти", RouteName.UserLogin)</li>
                 </ul>
             </div>
         </div>

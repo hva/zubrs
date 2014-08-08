@@ -81,6 +81,12 @@ namespace Zubrs.Mvc
             );
 
             routes.MapRoute(
+                RouteName.UserLogin,
+                "login",
+                new { controller = "user", action = "login" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

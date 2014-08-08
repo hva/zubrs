@@ -15,5 +15,6 @@
         public static string HistoryItem = "HistoryItem";
         public static string Photo = "Photo";
         public static string Video = "Video";
+        public static string UserLogin = "UserLogin";
     }
 }

@@ -144,6 +144,7 @@
     <Compile Include="Controllers\NavController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -172,6 +173,7 @@
     <Content Include="Views\Shared\_CompetitionTable.cshtml" />
     <Content Include="Views\Management\Index.cshtml" />
     <Content Include="Views\History\Index.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
     <Resource Include="sass\foundation\test.html" />
     <Resource Include="sass\foundation\components\_accordion.scss" />
     <Resource Include="sass\foundation\components\_alert-boxes.scss" />
