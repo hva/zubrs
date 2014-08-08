@@ -1,12 +1,24 @@
 ﻿@model Zubrs.Mvc.ViewModels.LoginViewModel
 
-<div class="small-6 columns">
+<div class="small-4 small-offset-2 columns">
     <h1>Авторизация</h1>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        @Html.LabelFor(x => x.Login)
-        @Html.TextBoxFor(m => m.Login)
-        <input type="submit" value="Войти" />
+        <div class="row">
+            <div class="small-12 columns">
+                @Html.TextBoxFor(m => m.Login, new { placeholder = Html.DisplayNameFor(x => x.Login) })
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 columns">
+                @Html.PasswordFor(m => m.Password, new { placeholder = Html.DisplayNameFor(x => x.Password) })
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 columns">
+                <input type="submit" value="Войти" class="small button" />
+            </div>
+        </div>
     }
 </div>
