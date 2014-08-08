@@ -1,1 +1,12 @@
-﻿
+﻿@model Zubrs.Mvc.ViewModels.LoginViewModel
+
+<div class="small-6 columns">
+    <h1>Авторизация</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.LabelFor(x => x.Login)
+        @Html.TextBoxFor(m => m.Login)
+        <input type="submit" value="Войти" />
+    }
+</div>

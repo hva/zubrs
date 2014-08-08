@@ -3379,7 +3379,7 @@ body {
 
 .bz-content {
   background: #fff;
-  padding-top: 15px;
+  padding: 15px 0;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
 
 .bz-footer {

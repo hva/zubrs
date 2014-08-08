@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Ninject;
 using Zubrs.Mvc.Infrastructure;
+using Zubrs.Mvc.ViewModels;
 
 namespace Zubrs.Mvc.Controllers
 {
@@ -13,7 +14,7 @@ namespace Zubrs.Mvc.Controllers
         public async Task<ActionResult> Login()
         {
             await MenuManager.InitAsync(null);
-            return View();
+            return View(new LoginViewModel());
         }
     }
 }
